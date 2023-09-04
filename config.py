@@ -1,3 +1,5 @@
+# python .\bot.py --lunshua
+
 """
     IMPORTANT #1:
     Please change game settings to EXACTLY these numbers:
@@ -24,8 +26,8 @@
 from characters import characters
 
 config = {
-    "mainCharacter": 0,  # must be in between number 0 to len(characters) - 1 (0 is the first character)
-    "GFN": True,  # set True for Geforce Now users
+    "mainCharacter": 0,  # must be in number 0 to 5 (0 is the first character)
+    "GFN": False,  # set True for Geforce Now users
     "enableMultiCharacterMode": True,  # this is lit
     "enableLopang": True,  # NOTE: you need to setup bifrost locations properly for this, at very specific locations. Look up ^
     "enableGuildDonation": True,  # please make sure all your characters have a guild
@@ -37,7 +39,116 @@ config = {
     # ilvl-endless is the dungeon which you want to run infinitely
     # ilvl-aor is the daily aura of resonance dungeon you only want to run TWICE per day
     # IMPORTANT: dungeon ilvl choices are only limited to 1475, 1445, 1370, 1110 for now. I will add more later when brel comes out
-    "characters": characters,
+    "characters": [
+        {
+            "index": 0,
+            "class": "sorceress", # sorc
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 1,
+            "class": "summoner", # summoner
+            "ilvl-endless": 1540,
+            "ilvl-aor": 1540,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 2,
+            "class": "paladin", # paladin
+            "ilvl-endless": 1540,
+            "ilvl-aor": 1540,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 3,
+            "class": "gunlancer", # gunlancer
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 4,
+            "class": "bard", # bard
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 5,
+            "class": "gunslinger", # gunslinger
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 6,
+            "class": "slayer", # slayer
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 7,
+            "class": "arcana", # arcana
+            "ilvl-endless": 1520,
+            "ilvl-aor": 1520,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 8,
+            "class": "sharpshooter", # sharpshooter
+            "ilvl-endless": 1540,
+            "ilvl-aor": 1540,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        # {
+        #     "index": 1,
+        #     "class": "deathblade", # deathblade
+        #     "ilvl-endless": 1490,
+        #     "ilvl-aor": 1490,
+        #     "lopang": True,
+        #     "guildDonation": True,
+        #     "rapport": False,
+        # },
+        # {
+        #     "index": 7,
+        #     "class": "sorceress",
+        #     "ilvl-endless": 1445,
+        #     "ilvl-aor": 1445,
+        #     "lopang": True,
+        #     "guildDonation": True,
+        #     "rapport": False,
+        # },
+        # {
+        #     "index": 8,
+        #     "class": "sorceress",
+        #     "ilvl-endless": 1445,
+        #     "ilvl-aor": 1445,
+        #     "lopang": True,
+        #     "guildDonation": True,
+        #     "rapport": False,
+        # }
+    ],
     "performance": False,  # set True for lower-end PCs
     "interact": "g",  # change this if you have binded it to something else eg.mouse button
     "move": "left",  # or "right"
@@ -46,7 +157,7 @@ config = {
     "awakening": "v",
     "healthPot": "f1",  # important to put your regen potion on this button
     "friends": "u",
-    "invisible": True,
+    "invisible": False,
     "healthPotAtPercent": 0.35,  # health threshold to trigger potion
     # "useAwakening": True, # not checking this for now
     # "useSpeciality1": True, # not checking this for now
@@ -90,18 +201,18 @@ config = {
         [1425, 827],
     ],
     "charPositions": [
-        [760, 440],
-        [960, 440],
-        [1160, 440],
-        [760, 530],
-        [960, 530],
-        [1160, 530],
-        [760, 620],
-        [960, 620],
-        [1160, 620],
-        [760, 530],
-        [960, 530],
-        [1160, 530],
+        [760, 440], # 1
+        [960, 440], # 2
+        [1160, 440], # 3
+        [760, 530], # 4
+        [960, 530], # 5
+        [1160, 530], # 6
+        [760, 620], # 7
+        [960, 620], # 8
+        [1160, 620], # 9
+        # [760, 530],
+        # [960, 530],
+        # [1160, 530],
         [760, 620],
         [960, 620],
         [1160, 620],

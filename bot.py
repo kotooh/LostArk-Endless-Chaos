@@ -7,6 +7,8 @@ import random
 import math
 import argparse
 from datetime import date
+import keyboard
+import os
 
 pydirectinput.PAUSE = 0.05
 newStates = {
@@ -38,8 +40,12 @@ newStates = {
     "multiCharacterModeState": [],
 }
 
+def abortScript():
+    os._exit(1)
 
 def main():
+    keyboard.add_hotkey('ctrl+page down', abortScript)
+
     print("Endless Chaos starting in seconds...")
     print("Remember to turn on Auto-disassemble")
 
@@ -76,6 +82,17 @@ def main():
     pydirectinput.click(button=meleeClick)
     sleep(300, 400)
 
+    pydirectinput.keyDown('ctrl')
+    sleep(10, 30)
+    pydirectinput.keyDown('shift')
+    sleep(10, 30)
+    pydirectinput.press('multiply')
+    sleep(10, 30)
+    pydirectinput.keyUp('shift')
+    sleep(10, 30)
+    pydirectinput.keyUp('ctrl')
+    sleep(10, 30)
+
     # stay invis in friends list
     if config["invisible"] == True:
         goInvisible()
@@ -87,9 +104,55 @@ def main():
     # save bot start time
     states["botStartTime"] = int(time.time_ns() / 1000000)
 
+    ranOnceFlag = False
+
     while True:
         if states["status"] == "inCity":
             sleep(1000, 1200)
+
+            # battle item preset
+            pydirectinput.keyDown('ctrl')
+            sleep(10, 30)
+            pydirectinput.press('q')
+            sleep(10, 30)
+            pydirectinput.keyUp('ctrl')
+            sleep(10, 30)
+
+            if not ranOnceFlag:
+                ranOnceFlag = True
+
+                pydirectinput.keyDown('alt')
+                pydirectinput.press('`')
+                pydirectinput.keyUp('alt')
+
+                # wed: 2
+                if date.today().weekday() == 2:
+                    sleepDur = 115
+                else:
+                    sleepDur = 75
+                    
+                sleepDur *= 60 * 1000
+                sleep(sleepDur, sleepDur)
+
+                # pydirectinput.press('esc')
+                # sleep(2000, 2000)
+                pydirectinput.click(x=1900, y=1050, button="left") # services
+                sleep(3000, 3000)
+                pydirectinput.click(x=1900, y=950, button="left") # game menu
+                sleep(3000, 3000)
+                pydirectinput.click(x=1100, y=730, button="left") # settings
+                sleep(3000, 3000)
+                pydirectinput.click(x=700, y=225, button="left") # favorite settings
+                sleep(2000, 2000)
+                pydirectinput.click(x=1210, y=377, button="left") # 21:9
+                sleep(2000, 2000)
+                pydirectinput.click(x=1345, y=545, button="left") # hud size
+                sleep(2000, 2000)
+                pydirectinput.click(x=1220, y=815, button="left") # OK
+                sleep(2000, 2000)
+
+                switchToCharacter(config["mainCharacter"])
+
             if offlineCheck():
                 closeGameByClickingDialogue()
                 continue
@@ -193,12 +256,21 @@ def main():
                     print(
                         "just finished last char before main, closing multi-char mode"
                     )
+                    pydirectinput.keyDown('ctrl')
+                    sleep(10, 30)
+                    pydirectinput.press('add')
+                    sleep(10, 30)
+                    pydirectinput.keyUp('ctrl')
+                    sleep(10, 30)
+
+                    os._exit(1)
+
                     states["multiCharacterMode"] = False
                     states["multiCharacterModeState"] = []
                     sleep(3400, 3600)
                     if date.today().weekday() == 2:
                         print("go invis again")
-                        goInvisible()
+                        # goInvisible()
                         sleep(3400, 3600)
                     switchToCharacter(config["mainCharacter"])
                     continue
@@ -295,7 +367,7 @@ def main():
                 continue
 
         elif states["status"] == "floor1":
-            print("floor1")
+            # print("floor1")
             sleep(1000, 1300)
             # wait for loading
             waitForLoading()
@@ -311,7 +383,7 @@ def main():
                 quitChaos()
                 continue
             sleep(1000, 1200)
-            print("floor1 loaded")
+            # print("floor1 loaded")
 
             # saving clean abilities icons
 
@@ -320,7 +392,7 @@ def main():
             # do floor one
             doFloor1()
         elif states["status"] == "floor2":
-            print("floor2")
+            # print("floor2")
             sleep(1000, 1300)
             # wait for loading
             waitForLoading()
@@ -335,7 +407,7 @@ def main():
             if checkTimeout():
                 quitChaos()
                 continue
-            print("floor2 loaded")
+            # print("floor2 loaded")
             # do floor two
             doFloor2()
         elif states["status"] == "floor3":
@@ -354,7 +426,7 @@ def main():
             if checkTimeout():
                 quitChaos()
                 continue
-            print("floor3 loaded")
+            # print("floor3 loaded")
             # currentTime = int(time.time_ns() / 1000000)
             # aorRun = pyautogui.screenshot()
             # aorRun.save("./debug/aor_" + str(currentTime) + ".png")
@@ -478,7 +550,7 @@ def enterChaos():
             )
             if aor != None and config["performance"] == False:
                 states["floor3Mode"] = True
-                print("aor detected")
+                # print("aor detected")
                 if (
                     config["enableMultiCharacterMode"] == True
                     and states["currentCharacter"] == config["mainCharacter"]
@@ -505,22 +577,25 @@ def enterChaos():
             _curr = config["characters"][states["currentCharacter"]]
             chaosTabPosition = {
                 # punika
-                1100: [[1230, 307], [524, 400]],
-                1310: [[1230, 307], [524, 455]],
-                1325: [[1230, 307], [524, 505]],
-                1340: [[1230, 307], [524, 555]],
-                1355: [[1230, 307], [524, 605]],
-                1370: [[1230, 307], [524, 662]],
-                1385: [[1230, 307], [524, 715]],
-                1400: [[1230, 307], [524, 770]],
+                1100: [[1100, 307], [524, 400]],
+                1310: [[1100, 307], [524, 455]],
+                1325: [[1100, 307], [524, 505]],
+                1340: [[1100, 307], [524, 555]],
+                1355: [[1100, 307], [524, 605]],
+                1370: [[1100, 307], [524, 662]],
+                1385: [[1100, 307], [524, 715]],
+                1400: [[1100, 307], [524, 770]],
                 # south vern
-                1415: [[1403, 307], [524, 400]],
-                1445: [[1403, 307], [524, 455]],
-                1475: [[1403, 307], [524, 505]],
-                1490: [[1403, 307], [524, 555]],
-                1520: [[1403, 307], [524, 605]],
-                1540: [[1403, 307], [524, 662]],
-                1560: [[1403, 307], [524, 715]],
+                1415: [[1260, 307], [524, 400]],
+                1445: [[1260, 307], [524, 455]],
+                1475: [[1260, 307], [524, 505]],
+                1490: [[1260, 307], [524, 555]],
+                1520: [[1260, 307], [524, 605]],
+                1540: [[1260, 307], [524, 662]],
+                1560: [[1260, 307], [524, 715]],
+                # elgacia
+                1580: [[1400, 307], [524, 400]],
+                1600: [[1400, 307], [524, 455]],
             }
             if states["multiCharacterMode"] or aor != None:
                 mouseMoveTo(
@@ -694,7 +769,7 @@ def doFloor1():
     if config["characters"][states["currentCharacter"]]["class"] == "summoner":
         mouseMoveTo(x=1010, y=865)
         sleep(800, 900)
-        pydirectinput.click(x=1010, y=865, button="left")
+        pydirectinput.click(x=985, y=865, button="left")
         sleep(800, 900)
 
     # berserker z
@@ -775,7 +850,7 @@ def doFloor2():
             quitChaos()
             return
 
-        print("floor 2 cleared")
+        # print("floor 2 cleared")
         # 不小心进下个门但没识别到
         if states["status"] == "floor3":
             # 要接着打
@@ -918,7 +993,7 @@ def doFloor3():
         quitChaos()
         return
 
-    print("real floor 3 loaded")
+    # print("real floor 3 loaded")
 
     clearQuest()
     sleep(500, 550)
@@ -938,7 +1013,7 @@ def doFloor3():
         quitChaos()
         return
 
-    print("Chaos Dungeon Full cleared")
+    # print("Chaos Dungeon Full cleared")
     if config["floor3Mode"] == True:
         # restartChaos()
         quitChaos()  # to check aor, for multi-char mode
@@ -1154,7 +1229,7 @@ def useAbilities():
 
         # check for accident
         if states["status"] == "floor1" and checkFloor2Elite():
-            print("accidentally entered floor 2")
+            # print("accidentally entered floor 2")
             states["status"] = "floor2"
             # nowTime = int(time.time_ns() / 1000000)
             # badRun = pyautogui.screenshot()
@@ -1162,7 +1237,7 @@ def useAbilities():
             states["badRunCount"] = states["badRunCount"] + 1
             return
         elif states["status"] == "floor2" and checkFloor3Tower():
-            print("accidentally entered floor 3")
+            # print("accidentally entered floor 3")
             states["status"] = "floor3"
             # nowTime = int(time.time_ns() / 1000000)
             # badRun = pyautogui.screenshot()
@@ -1179,13 +1254,13 @@ def useAbilities():
             and not checkFloor2Elite()
             and not checkFloor2Mob()
         ):
-            print("no elite/mob on floor 2, random move to detect portal")
+            # print("no elite/mob on floor 2, random move to detect portal")
             randomMove()
         elif states["status"] == "floor2" and checkFloor2Boss():
             # to avoid stuck on that 9 square map...
             randomMove()
         elif states["status"] == "floor1" and not checkFloor2Mob():
-            print("no mob on floor 1, random move to detect portal")
+            # print("no mob on floor 1, random move to detect portal")
             randomMove()
         elif states["status"] == "floor3" and checkFloor2Elite():
             calculateMinimapRelative(states["moveToX"], states["moveToY"])
@@ -1363,14 +1438,14 @@ def useAbilities():
             # class specific stuff
             if (
                 config["characters"][states["currentCharacter"]]["class"] == "arcana"
-                or config["characters"][states["currentCharacter"]]["class"]
-                == "deathblade"
+                or config["characters"][states["currentCharacter"]]["class"] == "deathblade"
             ):
                 pydirectinput.press("x")
                 pydirectinput.press("z")
             elif (
                 config["characters"][states["currentCharacter"]]["class"] == "summoner"
                 or config["characters"][states["currentCharacter"]]["class"] == "slayer"
+                or config["characters"][states["currentCharacter"]]["class"] == "sharpshooter"
                 # or config["characters"][states["currentCharacter"]]["class"] == "bard"
                 and (i == 1 or i == 3 or i == 5 or i == 7)
             ):
@@ -1392,6 +1467,14 @@ def useAbilities():
                     sleep(50, 60)
                     pydirectinput.press("z")
             elif (
+                config["characters"][states["currentCharacter"]]["class"] == "slayer"
+                and (i == 7)
+            ):
+                mouseMoveTo(x=config["screenCenterX"], y=config["screenCenterY"])
+                sleep(150, 160)
+                pydirectinput.press("z")
+                sleep(50, 60)
+            elif (
                 config["characters"][states["currentCharacter"]]["class"]
                 == "gunslinger"
                 and i == 0
@@ -1406,12 +1489,12 @@ def useAbilities():
                     region=(930, 819, 58, 56),
                     confidence=0.75,
                 )
-                if pistolStance != None:
-                    pydirectinput.press("z")
-                    sleep(150, 160)
-                elif sniperStance != None:
-                    pydirectinput.press("x")
-                    sleep(150, 160)
+                # if pistolStance != None:
+                #     pydirectinput.press("z")
+                #     sleep(150, 160)
+                # elif sniperStance != None:
+                #     pydirectinput.press("x")
+                #     sleep(150, 160)
             elif (
                 config["characters"][states["currentCharacter"]]["class"]
                 == "gunslinger"
@@ -1427,12 +1510,12 @@ def useAbilities():
                     region=(930, 819, 58, 56),
                     confidence=0.75,
                 )
-                if shotgunStance != None:
-                    pydirectinput.press("x")
-                    sleep(150, 160)
-                elif sniperStance != None:
-                    pydirectinput.press("z")
-                    sleep(150, 160)
+                # if shotgunStance != None:
+                #     pydirectinput.press("x")
+                #     sleep(150, 160)
+                # elif sniperStance != None:
+                #     pydirectinput.press("z")
+                #     sleep(150, 160)
             # elif (
             #     config["characters"][states["currentCharacter"]]["class"] == "glavier"
             #     and i == 8
@@ -1461,7 +1544,7 @@ def useAbilities():
                 rZ, gZ, bZ = pyautogui.pixel(920, 866)
                 rX, gX, bX = pyautogui.pixel(1006, 875)
                 if rZ - gZ > 80 and courageBuffActive == None:
-                    print("bard courage Z")
+                    # print("bard courage Z")
                     pydirectinput.press("z")
                     sleep(50, 60)
                     pydirectinput.press("z")
@@ -1610,29 +1693,29 @@ def checkPortal():
             x, y = portal
             states["moveToX"] = x
             states["moveToY"] = y
-            print(
-                "portal image x: {} y: {}".format(states["moveToX"], states["moveToY"])
-            )
+            # print(
+            #     "portal image x: {} y: {}".format(states["moveToX"], states["moveToY"])
+            # )
             return True
         elif portalTop != None:
             x, y = portalTop
             states["moveToX"] = x
             states["moveToY"] = y + 7
-            print(
-                "portalTop image x: {} y: {}".format(
-                    states["moveToX"], states["moveToY"]
-                )
-            )
+            # print(
+            #     "portalTop image x: {} y: {}".format(
+            #         states["moveToX"], states["moveToY"]
+            #     )
+            # )
             return True
         elif portalBot != None:
             x, y = portalBot
             states["moveToX"] = x
             states["moveToY"] = y - 7
-            print(
-                "portalBot image x: {} y: {}".format(
-                    states["moveToX"], states["moveToY"]
-                )
-            )
+            # print(
+            #     "portalBot image x: {} y: {}".format(
+            #         states["moveToX"], states["moveToY"]
+            #     )
+            # )
             return True
         # elif portalLeft != None:
         #     x, y = portalLeft
@@ -1689,11 +1772,11 @@ def checkPortal():
                 states["moveToY"] = states["moveToY"] - 1
             elif r in range(120, 130) and g in range(210, 220) and b in range(250, 256):
                 states["moveToY"] = states["moveToY"] + 1
-            print(
-                "portal pixel x: {} y: {}, r: {} g: {} b: {}".format(
-                    states["moveToX"], states["moveToY"], r, g, b
-                )
-            )
+            # print(
+            #     "portal pixel x: {} y: {}, r: {} g: {} b: {}".format(
+            #         states["moveToX"], states["moveToY"], r, g, b
+            #     )
+            # )
             return True
     return False
 
@@ -1724,11 +1807,11 @@ def checkFloor2Elite():
             left, top, _w, _h = config["regions"]["minimap"]
             states["moveToX"] = left + entry[1]
             states["moveToY"] = top + entry[0]
-            print(
-                "elite x: {} y: {}, r: {} g: {} b: {}".format(
-                    states["moveToX"], states["moveToY"], r, g, b
-                )
-            )
+            # print(
+            #     "elite x: {} y: {}, r: {} g: {} b: {}".format(
+            #         states["moveToX"], states["moveToY"], r, g, b
+            #     )
+            # )
             return True
     return False
 
@@ -1756,11 +1839,11 @@ def checkFloor2Mob():
             left, top, _w, _h = config["regions"]["minimap"]
             states["moveToX"] = left + entry[1]
             states["moveToY"] = top + entry[0]
-            print(
-                "mob x: {} y: {}, r: {} g: {} b: {}".format(
-                    states["moveToX"], states["moveToY"], r, g, b
-                )
-            )
+            # print(
+            #     "mob x: {} y: {}, r: {} g: {} b: {}".format(
+            #         states["moveToX"], states["moveToY"], r, g, b
+            #     )
+            # )
             return True
     return False
 
@@ -1808,7 +1891,7 @@ def checkFloor2Boss():
         left, top = bossLocation
         states["moveToX"] = left
         states["moveToY"] = top
-        print("boss x: {} y: {}".format(states["moveToX"], states["moveToY"]))
+        # print("boss x: {} y: {}".format(states["moveToX"], states["moveToY"]))
         return True
     return False
 
@@ -1857,7 +1940,7 @@ def clickTower():
         pydirectinput.click(
             x=states["moveToX"], y=states["moveToY"], button=config["move"]
         )
-        print("clicked rift core")
+        # print("clicked rift core")
         sleep(100, 120)
         pydirectinput.press(config["meleeAttack"])
         sleep(300, 360)
@@ -1875,7 +1958,7 @@ def clickTower():
         pydirectinput.click(
             x=states["moveToX"], y=states["moveToY"], button=config["move"]
         )
-        print("clicked rift core")
+        # print("clicked rift core")
         sleep(100, 120)
         pydirectinput.press(config["meleeAttack"])
         sleep(300, 360)
@@ -1904,19 +1987,19 @@ def checkFloor3Tower():
         x, y = tower
         states["moveToX"] = x
         states["moveToY"] = y
-        print("tower image x: {} y: {}".format(states["moveToX"], states["moveToY"]))
+        # print("tower image x: {} y: {}".format(states["moveToX"], states["moveToY"]))
         return True
     elif towerTop != None:
         x, y = towerTop
         states["moveToX"] = x
         states["moveToY"] = y + 7
-        print("towerTop image x: {} y: {}".format(states["moveToX"], states["moveToY"]))
+        # print("towerTop image x: {} y: {}".format(states["moveToX"], states["moveToY"]))
         return True
     elif towerBot != None:
         x, y = towerBot
         states["moveToX"] = x
         states["moveToY"] = y - 7
-        print("towerBot image x: {} y: {}".format(states["moveToX"], states["moveToY"]))
+        # print("towerBot image x: {} y: {}".format(states["moveToX"], states["moveToY"]))
         return True
 
     # minimap = pyautogui.screenshot(region=config["regions"]["minimap"])  # Top Right
@@ -2001,7 +2084,7 @@ def fightFloor2Boss():
     if pyautogui.locateOnScreen(
         "./screenshots/bossBar.png", confidence=0.8, region=(406, 159, 1000, 200)
     ):
-        print("boss bar located")
+        # print("boss bar located")
         mouseMoveTo(x=states["moveToX"], y=states["moveToY"])
         sleep(80, 100)
         pydirectinput.press(config["awakening"])
@@ -2129,24 +2212,24 @@ def moveToMinimapRelative(x, y, timeMin, timeMax, blink):
     # moving in a straight line
     # if states["moveTime"] < 50:
     #     return
-    print(
-        "moving to pos x: {} y: {} for {} ms".format(
-            states["moveToX"], states["moveToY"], states["moveTime"]
-        )
-    )
-    pydirectinput.keyDown("alt")
+    # print(
+    #     "moving to pos x: {} y: {} for {} ms".format(
+    #         states["moveToX"], states["moveToY"], states["moveTime"]
+    #     )
+    # )
+    # pydirectinput.keyDown("alt")
     sleep(10, 30)
     pydirectinput.click(x=x, y=y, button=config["move"])
     sleep(10, 30)
-    pydirectinput.keyUp("alt")
+    # pydirectinput.keyUp("alt")
     sleep(int(states["moveTime"] / 2) - 50, int(states["moveTime"] / 2) + 50)
 
     # moving in a straight line
-    pydirectinput.keyDown("alt")
+    # pydirectinput.keyDown("alt")
     sleep(10, 30)
     pydirectinput.click(x=x, y=y, button=config["move"])
     sleep(10, 30)
-    pydirectinput.keyUp("alt")
+    # pydirectinput.keyUp("alt")
     sleep(int(states["moveTime"] / 2) - 50, int(states["moveTime"] / 2) + 50)
 
     # sleep(timeMin, timeMax)
@@ -2158,7 +2241,8 @@ def moveToMinimapRelative(x, y, timeMin, timeMax, blink):
             if config["characters"][states["currentCharacter"]]["class"] == "sorceress":
                 pydirectinput.press("x")
             sleep(120, 160)
-        pydirectinput.press(config["blink"])
+        if config["characters"][states["currentCharacter"]]["class"] != "gunlancer":
+            pydirectinput.press(config["blink"])
         sleep(120, 170)
 
     pydirectinput.click(
@@ -2180,11 +2264,12 @@ def randomMove():
     if states["status"] == "floor1" or states["status"] == "floor2":
         mouseMoveTo(x=x, y=y)
         sleep(200, 250)
-        pydirectinput.press(config["blink"])
+        if config["characters"][states["currentCharacter"]]["class"] != "gunlancer":
+            pydirectinput.press(config["blink"])
         sleep(200, 250)
         return
 
-    print("random move to x: {} y: {}".format(x, y))
+    # print("random move to x: {} y: {}".format(x, y))
     pydirectinput.click(x=x, y=y, button=config["move"])
     sleep(200, 250)
     pydirectinput.click(x=x, y=y, button=config["move"])
@@ -2209,15 +2294,16 @@ def randomMove():
 def enterPortal():
     # repeatedly move and press g until black screen
     sleep(1100, 1200)
-    print("moving to portal x: {} y: {}".format(states["moveToX"], states["moveToY"]))
-    print("move for {} ms".format(states["moveTime"]))
+    # print("moving to portal x: {} y: {}".format(states["moveToX"], states["moveToY"]))
+    # print("move for {} ms".format(states["moveTime"]))
     if states["moveTime"] > 550:
         # print("blink")
         pydirectinput.click(
             x=states["moveToX"], y=states["moveToY"], button=config["move"]
         )
         sleep(100, 150)
-        pydirectinput.press(config["blink"])
+        if config["characters"][states["currentCharacter"]]["class"] != "gunlancer":
+            pydirectinput.press(config["blink"])
 
     enterTime = int(time.time_ns() / 1000000)
     while True:
@@ -2226,7 +2312,7 @@ def enterPortal():
         r, g, b = im.getpixel((1772 - 1652, 272 - 168))
         # print(r + g + b)
         if r + g + b < 60:
-            print("portal entered")
+            # print("portal entered")
             mouseMoveTo(x=config["screenCenterX"], y=config["screenCenterY"])
             return True
 
@@ -2246,12 +2332,14 @@ def enterPortal():
         ):
             pydirectinput.press(config["interact"])
             sleep(100, 120)
+            pydirectinput.press(config["interact"])
         else:
             pydirectinput.press(config["interact"])
             pydirectinput.click(
                 x=states["moveToX"], y=states["moveToY"], button=config["move"]
             )
             sleep(60, 70)
+            pydirectinput.press(config["interact"])
 
 
 # def enterPortal():
@@ -2320,7 +2408,7 @@ def enterPortal():
 
 
 def waitForLoading():
-    print("loading")
+    # print("loading")
     blackScreenStartTime = int(time.time_ns() / 1000000)
     while True:
         if offlineCheck():
@@ -2430,7 +2518,7 @@ def doAuraRepair(forced):
         confidence=0.4,
         region=(1500, 134, 100, 100),
     ):
-        print("repairing")
+        # print("repairing")
         pydirectinput.keyDown("alt")
         sleep(800, 900)
         pydirectinput.press("p")
@@ -2484,7 +2572,7 @@ def healthCheck():
     r3, g, b = pyautogui.pixel(x + 2, y)
     # print(x, r, g, b)
     if r1 < 30 or r2 < 30 or r3 < 30:
-        print("health pot pressed")
+        # print("health pot pressed")
         # print(r1, r2, r3)
         leaveButton = pyautogui.locateCenterOnScreen(
             "./screenshots/leave.png",
@@ -3435,7 +3523,7 @@ def bifrostGoTo(option):
             region=(1870, 133, 25, 30),
         )
         if inTown != None:
-            print("city loaded")
+            # print("city loaded")
             break
         sleep(1400, 1600)
     sleep(3500, 3600)
@@ -3573,12 +3661,12 @@ def acceptLopangDaily():
 def walkWithAlt(lopangX, lopangY, milliseconds):
     lopangX = lopangX
     lopangY = lopangY
-    pydirectinput.keyDown("alt")
+    # pydirectinput.keyDown("alt")
     mouseMoveTo(x=lopangX, y=lopangY)
     sleep(100, 100)
     pydirectinput.click(x=lopangX, y=lopangY, button=config["move"])
     sleep(milliseconds / 2, milliseconds / 2)
-    pydirectinput.keyUp("alt")
+    # pydirectinput.keyUp("alt")
     sleep(milliseconds / 2, milliseconds / 2)
 
 
@@ -3678,33 +3766,35 @@ def mouseMoveTo(**kwargs):
 
 
 def goInvisible():
-    pydirectinput.press(config["friends"])
-    sleep(2290, 2420)
-    mouseMoveTo(x=1836, y=384)
-    sleep(700, 800)
-    pydirectinput.click(x=1836, y=384, button="left")
-    sleep(500, 600)
-    mouseMoveTo(x=1836, y=448)
-    sleep(700, 800)
-    pydirectinput.click(x=1836, y=448, button="left")
-    sleep(1500, 1600)
-    pydirectinput.press("esc")
-    sleep(1500, 1600)
+    # pydirectinput.press(config["friends"])
+    # sleep(2290, 2420)
+    # mouseMoveTo(x=1836, y=384)
+    # sleep(700, 800)
+    # pydirectinput.click(x=1836, y=384, button="left")
+    # sleep(500, 600)
+    # mouseMoveTo(x=1836, y=448)
+    # sleep(700, 800)
+    # pydirectinput.click(x=1836, y=448, button="left")
+    # sleep(1500, 1600)
+    # pydirectinput.press("esc")
+    # sleep(1500, 1600)
+    return
 
 
 def goOnline():
-    pydirectinput.press(config["friends"])
-    sleep(2290, 2420)
-    mouseMoveTo(x=1836, y=384)
-    sleep(700, 800)
-    pydirectinput.click(x=1836, y=384, button="left")
-    sleep(500, 600)
-    mouseMoveTo(x=1836, y=407)
-    sleep(700, 800)
-    pydirectinput.click(x=1836, y=448, button="left")
-    sleep(1500, 1600)
-    pydirectinput.press("esc")
-    sleep(1500, 1600)
+    # pydirectinput.press(config["friends"])
+    # sleep(2290, 2420)
+    # mouseMoveTo(x=1836, y=384)
+    # sleep(700, 800)
+    # pydirectinput.click(x=1836, y=384, button="left")
+    # sleep(500, 600)
+    # mouseMoveTo(x=1836, y=407)
+    # sleep(700, 800)
+    # pydirectinput.click(x=1836, y=448, button="left")
+    # sleep(1500, 1600)
+    # pydirectinput.press("esc")
+    # sleep(1500, 1600)
+    return
 
 
 def waitForCityLoaded():
