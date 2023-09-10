@@ -110,14 +110,6 @@ def main():
         if states["status"] == "inCity":
             sleep(1000, 1200)
 
-            # battle item preset
-            pydirectinput.keyDown('ctrl')
-            sleep(10, 30)
-            pydirectinput.press('q')
-            sleep(10, 30)
-            pydirectinput.keyUp('ctrl')
-            sleep(10, 30)
-
             if not ranOnceFlag:
                 ranOnceFlag = True
 
@@ -127,9 +119,9 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 115
+                    sleepDur = 120
                 else:
-                    sleepDur = 75
+                    sleepDur = 80
                     
                 sleepDur *= 60 * 1000
                 sleep(sleepDur, sleepDur)
@@ -187,6 +179,14 @@ def main():
                     quitChaos()
                     sleep(4000, 6000)
                 sleep(1400, 1600)
+
+            # battle item preset
+            pydirectinput.keyDown('ctrl')
+            sleep(10, 30)
+            pydirectinput.press('q')
+            sleep(10, 30)
+            pydirectinput.keyUp('ctrl')
+            sleep(10, 30)
 
             mouseMoveTo(x=config["screenCenterX"], y=config["screenCenterY"])
             sleep(100, 200)
