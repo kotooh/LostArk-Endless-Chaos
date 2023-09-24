@@ -61,8 +61,8 @@ config = {
         {
             "index": 2,
             "class": "paladin", # paladin
-            "ilvl-endless": 1540,
-            "ilvl-aor": 1540,
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
