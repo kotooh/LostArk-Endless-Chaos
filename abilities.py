@@ -507,7 +507,7 @@ abilities = {
             "cast": True,
             "castTime": 3000,
             "position": {"left": 873, "top": 907, "width": 15, "height": 15},
-            "directional": True,
+            "directional": False,
         },
         {
             "key": "v",
