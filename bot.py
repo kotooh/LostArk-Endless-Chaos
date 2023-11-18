@@ -119,9 +119,9 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 120
+                    sleepDur = 105
                 else:
-                    sleepDur = 80
+                    sleepDur = 75
                     
                 sleepDur *= 60 * 1000
                 sleep(sleepDur, sleepDur)
@@ -141,6 +141,8 @@ def main():
                 pydirectinput.click(x=1345, y=545, button="left") # hud size
                 sleep(2000, 2000)
                 pydirectinput.click(x=1220, y=815, button="left") # OK
+                sleep(2000, 2000)
+                pydirectinput.click(x=920, y=505, button="left") # OK accept settings
                 sleep(2000, 2000)
 
                 switchToCharacter(config["mainCharacter"])
