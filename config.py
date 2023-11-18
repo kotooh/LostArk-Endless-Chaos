@@ -42,18 +42,18 @@ config = {
     "characters": [
         {
             "index": 0,
-            "class": "sorceress", # sorc
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
+            "class": "slayer", # slayer
+            "ilvl-endless": 1600,
+            "ilvl-aor": 1600,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
         },
         {
             "index": 1,
-            "class": "summoner", # summoner
-            "ilvl-endless": 1540,
-            "ilvl-aor": 1540,
+            "class": "souleater", # souleater
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -96,9 +96,9 @@ config = {
         },
         {
             "index": 6,
-            "class": "slayer", # slayer
-            "ilvl-endless": 1600,
-            "ilvl-aor": 1600,
+            "class": "sorceress", # sorceress
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -114,9 +114,18 @@ config = {
         },
         {
             "index": 8,
-            "class": "sharpshooter", # sharpshooter
+            "class": "summoner", # summoner
             "ilvl-endless": 1540,
             "ilvl-aor": 1540,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 9,
+            "class": "sharpshooter", # sharpshooter
+            "ilvl-endless": 1560,
+            "ilvl-aor": 1560,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
