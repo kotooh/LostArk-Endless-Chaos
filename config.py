@@ -123,6 +123,15 @@ config = {
         },
         {
             "index": 9,
+            "class": "reaper", # reaper
+            "ilvl-endless": 1445,
+            "ilvl-aor": 1445,
+            "lopang": False,
+            "guildDonation": False,
+            "rapport": False,
+        },
+        {
+            "index": 10,
             "class": "sharpshooter", # sharpshooter
             "ilvl-endless": 1560,
             "ilvl-aor": 1560,
