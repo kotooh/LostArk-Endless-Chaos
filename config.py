@@ -124,8 +124,8 @@ config = {
         {
             "index": 9,
             "class": "reaper", # reaper
-            "ilvl-endless": 1445,
-            "ilvl-aor": 1445,
+            "ilvl-endless": 1490,
+            "ilvl-aor": 1490,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
