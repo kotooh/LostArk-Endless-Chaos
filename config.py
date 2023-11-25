@@ -79,8 +79,8 @@ config = {
         {
             "index": 4,
             "class": "bard", # bard
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
+            "ilvl-endless": 1600,
+            "ilvl-aor": 1600,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -88,8 +88,8 @@ config = {
         {
             "index": 5,
             "class": "gunslinger", # gunslinger
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
+            "ilvl-endless": 1600,
+            "ilvl-aor": 1600,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
