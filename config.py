@@ -133,8 +133,8 @@ config = {
         {
             "index": 10,
             "class": "sharpshooter", # sharpshooter
-            "ilvl-endless": 1560,
-            "ilvl-aor": 1560,
+            "ilvl-endless": 1580,
+            "ilvl-aor": 1580,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -176,7 +176,7 @@ config = {
     "healthPot": "f1",  # important to put your regen potion on this button
     "friends": "u",
     "invisible": False,
-    "healthPotAtPercent": 0.35,  # health threshold to trigger potion
+    "healthPotAtPercent": 0.1,  # health threshold to trigger potion
     # "useAwakening": True, # not checking this for now
     # "useSpeciality1": True, # not checking this for now
     # "useSpeciality2": True, # not checking this for now
