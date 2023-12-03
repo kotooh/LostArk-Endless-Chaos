@@ -119,9 +119,9 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 105
+                    sleepDur = 102
                 else:
-                    sleepDur = 75
+                    sleepDur = 72
                     
                 sleepDur *= 60 * 1000
                 sleep(sleepDur, sleepDur)
@@ -2873,10 +2873,12 @@ def restartGame():
     print("restart game")
     gameCrashCheck()
     sleep(5000, 7000)
-    states["multiCharacterMode"] = False  # for now
-    states["multiCharacterModeState"] = []  # for now
-    states["currentCharacter"] = config["mainCharacter"]
+    # states["multiCharacterMode"] = False  # for now
+    # states["multiCharacterModeState"] = []  # for now
+    # states["currentCharacter"] = config["mainCharacter"]
     while True:
+        os.system('start steam://launch/1599340/dialog')
+        sleep(60000, 60000)
         enterGame = pyautogui.locateCenterOnScreen(
             "./screenshots/steamPlay.png", confidence=0.75
         )
@@ -3034,29 +3036,29 @@ def restartGame():
             sleep(1000, 1200)
             # 点第一页
             sleep(4000, 5000)
-            mouseMoveTo(x=138, y=895)
-            sleep(500, 600)
-            pydirectinput.click(button="left")
-            sleep(500, 600)
-            pydirectinput.click(button="left")
-            sleep(500, 600)
-            pydirectinput.click(button="left")
-            sleep(500, 600)
+            # mouseMoveTo(x=138, y=895)
+            # sleep(500, 600)
+            # pydirectinput.click(button="left")
+            # sleep(500, 600)
+            # pydirectinput.click(button="left")
+            # sleep(500, 600)
+            # pydirectinput.click(button="left")
+            # sleep(500, 600)
 
             # 点main角色
-            sleep(4000, 5000)
-            print("clicking mainCharacter")
-            mouseMoveTo(
-                x=config["charPositionsAtCharSelect"][config["mainCharacter"]][0],
-                y=config["charPositionsAtCharSelect"][config["mainCharacter"]][1],
-            )
-            sleep(500, 600)
-            pydirectinput.click(button="left")
-            sleep(500, 600)
-            pydirectinput.click(button="left")
-            sleep(500, 600)
-            pydirectinput.click(button="left")
-            sleep(500, 600)
+            # sleep(4000, 5000)
+            # print("clicking mainCharacter")
+            # mouseMoveTo(
+            #     x=config["charPositionsAtCharSelect"][config["mainCharacter"]][0],
+            #     y=config["charPositionsAtCharSelect"][config["mainCharacter"]][1],
+            # )
+            # sleep(500, 600)
+            # pydirectinput.click(button="left")
+            # sleep(500, 600)
+            # pydirectinput.click(button="left")
+            # sleep(500, 600)
+            # pydirectinput.click(button="left")
+            # sleep(500, 600)
 
             print("clicking enterCharacter")
             x, y = enterCharacter
