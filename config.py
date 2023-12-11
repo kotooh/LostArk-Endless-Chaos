@@ -106,8 +106,8 @@ config = {
         {
             "index": 7,
             "class": "arcana", # arcana
-            "ilvl-endless": 1520,
-            "ilvl-aor": 1520,
+            "ilvl-endless": 1540,
+            "ilvl-aor": 1540,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -124,8 +124,8 @@ config = {
         {
             "index": 9,
             "class": "reaper", # reaper
-            "ilvl-endless": 1490,
-            "ilvl-aor": 1490,
+            "ilvl-endless": 1520,
+            "ilvl-aor": 1520,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -176,7 +176,7 @@ config = {
     "healthPot": "f1",  # important to put your regen potion on this button
     "friends": "u",
     "invisible": False,
-    "healthPotAtPercent": 0.1,  # health threshold to trigger potion
+    "healthPotAtPercent": 0.13,  # health threshold to trigger potion
     # "useAwakening": True, # not checking this for now
     # "useSpeciality1": True, # not checking this for now
     # "useSpeciality2": True, # not checking this for now
