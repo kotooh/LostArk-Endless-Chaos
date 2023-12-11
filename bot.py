@@ -119,7 +119,7 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 102
+                    sleepDur = 95
                 else:
                     sleepDur = 72
                     
@@ -394,7 +394,7 @@ def main():
             # do floor one
             doFloor1()
         elif states["status"] == "floor2":
-            # print("floor2")
+            print("floor2")
             sleep(1000, 1300)
             # wait for loading
             waitForLoading()
@@ -767,7 +767,7 @@ def doFloor1():
     pydirectinput.click(button=config["move"])
     sleep(450, 500)
 
-    # switch to akir
+    # switch to skill 4
     if config["characters"][states["currentCharacter"]]["class"] == "summoner":
         mouseMoveTo(x=1010, y=865)
         sleep(800, 900)
@@ -1231,7 +1231,7 @@ def useAbilities():
 
         # check for accident
         if states["status"] == "floor1" and checkFloor2Elite():
-            # print("accidentally entered floor 2")
+            print("accidentally entered floor 2")
             states["status"] = "floor2"
             # nowTime = int(time.time_ns() / 1000000)
             # badRun = pyautogui.screenshot()
@@ -1239,7 +1239,7 @@ def useAbilities():
             states["badRunCount"] = states["badRunCount"] + 1
             return
         elif states["status"] == "floor2" and checkFloor3Tower():
-            # print("accidentally entered floor 3")
+            print("accidentally entered floor 3")
             states["status"] = "floor3"
             # nowTime = int(time.time_ns() / 1000000)
             # badRun = pyautogui.screenshot()
@@ -2334,14 +2334,14 @@ def enterPortal():
         ):
             pydirectinput.press(config["interact"])
             sleep(100, 120)
-            pydirectinput.press(config["interact"])
+            # pydirectinput.press(config["interact"])
         else:
             pydirectinput.press(config["interact"])
             pydirectinput.click(
                 x=states["moveToX"], y=states["moveToY"], button=config["move"]
             )
             sleep(60, 70)
-            pydirectinput.press(config["interact"])
+            # pydirectinput.press(config["interact"])
 
 
 # def enterPortal():
@@ -2499,7 +2499,7 @@ def diedCheck():  # get information about wait a few second to revive
             mouseMoveTo(x=1275, y=454)
             sleep(1600, 1800)
             print("rez clicked")
-            pydirectinput.click(1275, 454, button="left")
+            pydirectinput.click(1275, 400, button="left")
             sleep(600, 800)
             mouseMoveTo(x=config["screenCenterX"], y=config["screenCenterY"])
             sleep(600, 800)
@@ -2574,7 +2574,7 @@ def healthCheck():
     r3, g, b = pyautogui.pixel(x + 2, y)
     # print(x, r, g, b)
     if r1 < 30 or r2 < 30 or r3 < 30:
-        # print("health pot pressed")
+        print("health pot pressed")
         # print(r1, r2, r3)
         leaveButton = pyautogui.locateCenterOnScreen(
             "./screenshots/leave.png",
