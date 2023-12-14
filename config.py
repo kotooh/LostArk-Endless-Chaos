@@ -43,8 +43,8 @@ config = {
         {
             "index": 0,
             "class": "slayer", # slayer
-            "ilvl-endless": 1600,
-            "ilvl-aor": 1600,
+            "ilvl-endless": 1610,
+            "ilvl-aor": 1610,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
@@ -52,8 +52,8 @@ config = {
         {
             "index": 1,
             "class": "souleater", # souleater
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
+            "ilvl-endless": 1600,
+            "ilvl-aor": 1600,
             "lopang": False,
             "guildDonation": False,
             "rapport": False,
