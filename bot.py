@@ -119,7 +119,7 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 95
+                    sleepDur = 105
                 else:
                     sleepDur = 72
                     
@@ -574,6 +574,10 @@ def enterChaos():
             sleep(500, 600)
             pydirectinput.click(x=886, y=346, button="left")
             sleep(500, 600)
+
+            for _ in range(2):
+                pydirectinput.click(x=1480, y=310, button="left") # right arrow
+                sleep(500, 600)
 
             # select chaos dungeon level based on current Character
             _curr = config["characters"][states["currentCharacter"]]
@@ -3098,17 +3102,17 @@ def switchToCharacter(index):
     # pyautogui.scroll(5)  # fix character switch if you have more then 9 characters
     # sleep(1500, 1600)
     mouseMoveTo(x=1260, y=392)
-    sleep(1500, 1600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(1500, 1600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(1500, 1600)
+    sleep(500, 600)
     pydirectinput.click(x=1260, y=392, button="left")
     sleep(500, 600)
     pydirectinput.click(x=1260, y=392, button="left")
-    sleep(1500, 1600)
+    sleep(500, 600)
     pydirectinput.click(x=1260, y=392, button="left")
-    sleep(1500, 1600)
+    sleep(500, 600)
+    pydirectinput.click(x=1260, y=392, button="left")
+    sleep(500, 600)
+    pydirectinput.click(x=1260, y=392, button="left")
+    sleep(500, 600)
     if index > 8:
         # mouseMoveTo(
         #     x=config["charPositions"][index][0], y=config["charPositions"][index][1]
@@ -3116,17 +3120,17 @@ def switchToCharacter(index):
         # pyautogui.scroll(-5)
         # sleep(1500, 1600)
         mouseMoveTo(x=1260, y=638)
-        sleep(1500, 1600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(1500, 1600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(1500, 1600)
+        sleep(500, 600)
         pydirectinput.click(x=1260, y=638, button="left")
         sleep(500, 600)
         pydirectinput.click(x=1260, y=638, button="left")
-        sleep(1500, 1600)
+        sleep(500, 600)
         pydirectinput.click(x=1260, y=638, button="left")
-        sleep(1500, 1600)
+        sleep(500, 600)
+        pydirectinput.click(x=1260, y=638, button="left")
+        sleep(500, 600)
+        pydirectinput.click(x=1260, y=638, button="left")
+        sleep(500, 600)
 
     mouseMoveTo(
         x=config["charPositions"][index][0], y=config["charPositions"][index][1]
