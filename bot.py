@@ -104,7 +104,7 @@ def main():
     # save bot start time
     states["botStartTime"] = int(time.time_ns() / 1000000)
 
-    ranOnceFlag = False
+    ranOnceFlag = True
 
     while True:
         if states["status"] == "inCity":
@@ -163,12 +163,12 @@ def main():
                     closeGameByClickingDialogue()
                     break
                 sleep(1000, 1200)
-                inTown = pyautogui.locateCenterOnScreen(
+                inTown = locateCenterOnScreenSilentFail(
                     "./screenshots/inTown.png",
                     confidence=0.75,
                     region=(1870, 133, 25, 30),
                 )
-                inChaos = pyautogui.locateCenterOnScreen(
+                inChaos = locateCenterOnScreenSilentFail(
                     "./screenshots/inChaos.png",
                     confidence=0.75,
                     region=(247, 146, 222, 50),
@@ -463,7 +463,7 @@ def main():
                 sleep(200, 300)
             sleep(600, 800)
 
-            inChaos = pyautogui.locateCenterOnScreen(
+            inChaos = locateCenterOnScreenSilentFail(
                 "./screenshots/inChaos.png", confidence=0.75, region=(247, 146, 222, 50)
             )
             currentTime = int(time.time_ns() / 1000000)
@@ -516,7 +516,7 @@ def enterChaos():
             sleep(1000, 1200)
 
             # check if in chaos from disconenct->restart
-            inChaos = pyautogui.locateCenterOnScreen(
+            inChaos = locateCenterOnScreenSilentFail(
                 "./screenshots/inChaos.png",
                 confidence=0.75,
                 region=(247, 146, 222, 50),
@@ -527,7 +527,7 @@ def enterChaos():
                 sleep(5000, 6000)
                 # incity check
                 while True:
-                    inTown = pyautogui.locateCenterOnScreen(
+                    inTown = locateCenterOnScreenSilentFail(
                         "./screenshots/inTown.png",
                         confidence=0.75,
                         region=(1870, 133, 25, 30),
@@ -547,7 +547,7 @@ def enterChaos():
             if config["GFN"] == True and len(states["abilityScreenshots"]) < 8:
                 sleep(2000, 2400)
 
-            aor = pyautogui.locateCenterOnScreen(
+            aor = locateCenterOnScreenSilentFail(
                 "./screenshots/aor.png", confidence=0.8, region=(592, 304, 192, 95)
             )
             if aor != None and config["performance"] == False:
@@ -676,7 +676,7 @@ def enterChaos():
                 )
                 sleep(500, 600)
 
-            enterButton = pyautogui.locateCenterOnScreen(
+            enterButton = locateCenterOnScreenSilentFail(
                 "./screenshots/enterButton.png",
                 confidence=0.75,
                 region=(1334, 754, 120, 60),
@@ -712,7 +712,7 @@ def enterChaos():
             if offlineCheck():
                 closeGameByClickingDialogue()
                 return
-            enterHand = pyautogui.locateOnScreen(
+            enterHand = locateOnScreenSilentFail(
                 "./screenshots/enterChaos.png", confidence=config["confidenceForGFN"]
             )
             if enterHand != None:
@@ -727,19 +727,19 @@ def enterChaos():
         # if offlineCheck():
         #     closeGameByClickingDialogue()
         #     return
-        dc = pyautogui.locateOnScreen(
+        dc = locateOnScreenSilentFail(
             "./screenshots/dc.png",
             region=config["regions"]["center"],
             confidence=config["confidenceForGFN"],
         )
-        enterServer = pyautogui.locateCenterOnScreen(
+        enterServer = locateCenterOnScreenSilentFail(
             "./screenshots/enterServer.png", confidence=0.98, region=(885, 801, 160, 55)
         )
         if dc != None or enterServer != None:
             closeGameByClickingDialogue()
             return
 
-        acceptButton = pyautogui.locateCenterOnScreen(
+        acceptButton = locateCenterOnScreenSilentFail(
             "./screenshots/acceptButton.png",
             confidence=0.75,
             region=config["regions"]["center"],
@@ -897,7 +897,7 @@ def doFloor3Portal():
     for i in range(0, 15):
         goldMob = checkFloor3GoldMob()
         normalMob = checkFloor2Mob()
-        bossBar = pyautogui.locateOnScreen(
+        bossBar = locateOnScreenSilentFail(
             "./screenshots/bossBar.png", confidence=0.7, region=(406, 159, 1000, 200)
         )
         if normalMob == True:
@@ -1042,7 +1042,7 @@ def quitChaos():
         if gameCrashCheck():
             states["status"] = "restart"
             return
-        leaveButton = pyautogui.locateCenterOnScreen(
+        leaveButton = locateCenterOnScreenSilentFail(
             "./screenshots/leave.png",
             grayscale=True,
             confidence=0.7,
@@ -1056,7 +1056,7 @@ def quitChaos():
             sleep(200, 300)
         sleep(300, 400)
         # leave ok
-        okButton = pyautogui.locateCenterOnScreen(
+        okButton = locateCenterOnScreenSilentFail(
             "./screenshots/ok.png",
             confidence=0.75,
             region=config["regions"]["center"],
@@ -1066,7 +1066,7 @@ def quitChaos():
         sleep(300, 400)
         """
         # incity check
-        inTown = pyautogui.locateCenterOnScreen(
+        inTown = locateCenterOnScreenSilentFail(
             "./screenshots/inTown.png",
             confidence=0.75,
             region=(1870, 133, 25, 30),
@@ -1083,7 +1083,7 @@ def quitChaos():
         if gameCrashCheck():
             states["status"] = "restart"
             return
-        okButton = pyautogui.locateCenterOnScreen(
+        okButton = locateCenterOnScreenSilentFail(
             "./screenshots/ok.png",
             confidence=0.75,
             region=config["regions"]["center"],
@@ -1126,7 +1126,7 @@ def restartChaos():
     states["instanceStartTime"] = int(time.time_ns() / 1000000)
 
     while True:
-        selectLevelButton = pyautogui.locateCenterOnScreen(
+        selectLevelButton = locateCenterOnScreenSilentFail(
             "./screenshots/selectLevel.png",
             confidence=0.8,
             region=config["regions"]["leaveMenu"],
@@ -1142,7 +1142,7 @@ def restartChaos():
         sleep(100, 200)
     sleep(100, 200)
     while True:
-        enterButton = pyautogui.locateCenterOnScreen(
+        enterButton = locateCenterOnScreenSilentFail(
             "./screenshots/enterButton.png",
             confidence=0.75,
             region=(1334, 754, 120, 60),
@@ -1160,7 +1160,7 @@ def restartChaos():
         sleep(100, 200)
     sleep(100, 200)
     while True:
-        acceptButton = pyautogui.locateCenterOnScreen(
+        acceptButton = locateCenterOnScreenSilentFail(
             "./screenshots/acceptButton.png",
             confidence=0.75,
             region=config["regions"]["center"],
@@ -1487,12 +1487,12 @@ def useAbilities():
                 == "gunslinger"
                 and i == 0
             ):
-                pistolStance = pyautogui.locateOnScreen(
+                pistolStance = locateOnScreenSilentFail(
                     "./screenshots/pistolStance.png",
                     region=(930, 819, 58, 56),
                     confidence=0.75,
                 )
-                sniperStance = pyautogui.locateOnScreen(
+                sniperStance = locateOnScreenSilentFail(
                     "./screenshots/sniperStance.png",
                     region=(930, 819, 58, 56),
                     confidence=0.75,
@@ -1508,12 +1508,12 @@ def useAbilities():
                 == "gunslinger"
                 and i == 4
             ):
-                shotgunStance = pyautogui.locateOnScreen(
+                shotgunStance = locateOnScreenSilentFail(
                     "./screenshots/shotgunStance.png",
                     region=(930, 819, 58, 56),
                     confidence=0.75,
                 )
-                sniperStance = pyautogui.locateOnScreen(
+                sniperStance = locateOnScreenSilentFail(
                     "./screenshots/sniperStance.png",
                     region=(930, 819, 58, 56),
                     confidence=0.75,
@@ -1533,7 +1533,7 @@ def useAbilities():
             elif (
                 config["characters"][states["currentCharacter"]]["class"] == "paladin"
             ) and (i == 1 or i == 3 or i == 5 or i == 7):
-                paladinSpecialty = pyautogui.locateOnScreen(
+                paladinSpecialty = locateOnScreenSilentFail(
                     "./screenshots/paladinSpecialty.png",
                     region=(904, 900, 111, 35),
                     confidence=0.9,
@@ -1544,7 +1544,7 @@ def useAbilities():
 
             # bard courage
             if config["characters"][states["currentCharacter"]]["class"] == "bard":
-                courageBuffActive = pyautogui.locateOnScreen(
+                courageBuffActive = locateOnScreenSilentFail(
                     "./screenshots/bardCourage120.png",
                     region=config["regions"]["buffs"],
                     confidence=0.75,
@@ -1582,7 +1582,7 @@ def useAbilities():
             #     x = 1080
             #     y = config["healthCheckY"]
             #     r, g, b = pyautogui.pixel(x, y)
-            #     touchBuffActive = pyautogui.locateOnScreen(
+            #     touchBuffActive = locateOnScreenSilentFail(
             #         "./screenshots/touch.png",
             #         region=config["regions"]["buffs"],
             #         confidence=0.75,
@@ -1607,7 +1607,7 @@ def checkCDandCast(ability):
     if (
         config["GFN"] == True
         or config["performance"] == True
-        or pyautogui.locateOnScreen(
+        or locateOnScreenSilentFail(
             ability["image"],
             region=config["regions"]["abilities"],
         )
@@ -1626,7 +1626,7 @@ def checkCDandCast(ability):
                 pydirectinput.press(ability["key"])
                 sleep(50, 60)
                 now_ms = int(time.time_ns() / 1000000)
-            # while pyautogui.locateOnScreen(
+            # while locateOnScreenSilentFail(
             #     ability["image"], region=config["regions"]["abilities"]
             # ):
             #     pydirectinput.press(ability["key"])
@@ -1638,7 +1638,7 @@ def checkCDandCast(ability):
             while now_ms - start_ms < ability["holdTime"]:
                 # pydirectinput.keyDown(ability["key"])
                 now_ms = int(time.time_ns() / 1000000)
-            # while pyautogui.locateOnScreen(
+            # while locateOnScreenSilentFail(
             #     ability["image"], region=config["regions"]["abilities"]
             # ):
             #     pydirectinput.keyDown(ability["key"])
@@ -1655,7 +1655,7 @@ def checkCDandCast(ability):
             pydirectinput.press(ability["key"])
             start_ms = int(time.time_ns() / 1000000)
             now_ms = int(time.time_ns() / 1000000)
-            while pyautogui.locateOnScreen(
+            while locateOnScreenSilentFail(
                 ability["image"],
                 region=config["regions"]["abilities"],
             ):
@@ -1670,28 +1670,28 @@ def checkCDandCast(ability):
 def checkPortal():
     if config["performance"] == False:
         # check portal image
-        portal = pyautogui.locateCenterOnScreen(
+        portal = locateCenterOnScreenSilentFail(
             "./screenshots/portal.png",
             region=config["regions"]["minimap"],
             confidence=0.7,
         )
-        portalTop = pyautogui.locateCenterOnScreen(
+        portalTop = locateCenterOnScreenSilentFail(
             "./screenshots/portalTop.png",
             region=config["regions"]["minimap"],
             confidence=0.7,
         )
-        portalBot = pyautogui.locateCenterOnScreen(
+        portalBot = locateCenterOnScreenSilentFail(
             "./screenshots/portalBot.png",
             region=config["regions"]["minimap"],
             confidence=0.7,
         )
         """
-        portalLeft = pyautogui.locateCenterOnScreen(
+        portalLeft = locateCenterOnScreenSilentFail(
             "./screenshots/portalLeft.png",
             region=config["regions"]["minimap"],
             confidence=0.9,
         )
-        portalRight = pyautogui.locateCenterOnScreen(
+        portalRight = locateCenterOnScreenSilentFail(
             "./screenshots/portalRight.png",
             region=config["regions"]["minimap"],
             confidence=0.9,
@@ -1892,7 +1892,7 @@ def checkFloor3GoldMob():
 
 def checkFloor2Boss():
     fightFloor2Boss()
-    bossLocation = pyautogui.locateCenterOnScreen(
+    bossLocation = locateCenterOnScreenSilentFail(
         "./screenshots/boss.png", confidence=0.65, region=config["regions"]["minimap"]
     )
     if bossLocation != None:
@@ -1929,12 +1929,12 @@ def checkFloor2Boss():
 
 
 def clickTower():
-    riftCore1 = pyautogui.locateCenterOnScreen(
+    riftCore1 = locateCenterOnScreenSilentFail(
         "./screenshots/riftcore1.png",
         confidence=0.6,
         region=config["regions"]["portal"],
     )
-    riftCore2 = pyautogui.locateCenterOnScreen(
+    riftCore2 = locateCenterOnScreenSilentFail(
         "./screenshots/riftcore2.png",
         confidence=0.6,
         region=config["regions"]["portal"],
@@ -1978,15 +1978,15 @@ def clickTower():
 
 
 def checkFloor3Tower():
-    tower = pyautogui.locateCenterOnScreen(
+    tower = locateCenterOnScreenSilentFail(
         "./screenshots/tower.png", region=config["regions"]["minimap"], confidence=0.7
     )
-    towerTop = pyautogui.locateCenterOnScreen(
+    towerTop = locateCenterOnScreenSilentFail(
         "./screenshots/towerTop.png",
         region=config["regions"]["minimap"],
         confidence=0.7,
     )
-    towerBot = pyautogui.locateCenterOnScreen(
+    towerBot = locateCenterOnScreenSilentFail(
         "./screenshots/towerBot.png",
         region=config["regions"]["minimap"],
         confidence=0.7,
@@ -2047,11 +2047,11 @@ def checkFloor3Tower():
 
 
 def checkChaosFinish():
-    clearOk = pyautogui.locateCenterOnScreen(
+    clearOk = locateCenterOnScreenSilentFail(
         "./screenshots/clearOk.png", confidence=0.75, region=(625, 779, 500, 155)
     )
     """
-    selectLevelButton = pyautogui.locateCenterOnScreen(
+    selectLevelButton = locateCenterOnScreenSilentFail(
     "./screenshots/selectLevel.png",
     confidence=0.8,
     region=config["regions"]["leaveMenu"],
@@ -2089,7 +2089,7 @@ def checkChaosFinish():
 
 
 def fightFloor2Boss():
-    if pyautogui.locateOnScreen(
+    if locateOnScreenSilentFail(
         "./screenshots/bossBar.png", confidence=0.8, region=(406, 159, 1000, 200)
     ):
         # print("boss bar located")
@@ -2107,14 +2107,14 @@ def fightFloor2Boss():
 
 
 # def fightFloor2Boss():
-#     if states["status"] == "floor3" and pyautogui.locateOnScreen(
+#     if states["status"] == "floor3" and locateOnScreenSilentFail(
 #         "./screenshots/bossBar.png", confidence=0.8, region=(406, 159, 1000, 200)
 #     ):
 #         print("boss bar located")
 #         mouseMoveTo(x=states["moveToX"], y=states["moveToY"])
 #         sleep(80, 100)
 #         pydirectinput.press(config["awakening"])
-#     elif states["bossBarLocated"] == False and pyautogui.locateOnScreen(
+#     elif states["bossBarLocated"] == False and locateOnScreenSilentFail(
 #         "./screenshots/bossBar.png", confidence=0.8, region=(406, 159, 1000, 200)
 #     ):
 #         mouseMoveTo(x=states["moveToX"], y=states["moveToY"])
@@ -2438,7 +2438,7 @@ def waitForLoading():
             sleep(350, 400)
             sleep(10000, 15000)
             return
-        leaveButton = pyautogui.locateOnScreen(
+        leaveButton = locateOnScreenSilentFail(
             "./screenshots/leave.png",
             grayscale=True,
             confidence=0.7,
@@ -2477,7 +2477,7 @@ def saveAbilitiesScreenshots():
 
 
 # def windowCheck():
-#     if pyautogui.locateOnScreen(
+#     if locateOnScreenSilentFail(
 #         "./screenshots/close.png", grayscale=True, confidence=0.9
 #     ):
 #         pydirectinput.press("esc")
@@ -2485,7 +2485,7 @@ def saveAbilitiesScreenshots():
 
 
 def diedCheck():  # get information about wait a few second to revive
-    if pyautogui.locateOnScreen(
+    if locateOnScreenSilentFail(
         "./screenshots/died.png",
         grayscale=True,
         confidence=0.9,
@@ -2495,7 +2495,7 @@ def diedCheck():  # get information about wait a few second to revive
         states["deathCount"] = states["deathCount"] + 1
         sleep(5000, 5500)
         while (
-            pyautogui.locateOnScreen(
+            locateOnScreenSilentFail(
                 "./screenshots/resReady.png",
                 confidence=0.7,
                 region=(917, 145, 630, 550),
@@ -2520,7 +2520,7 @@ def diedCheck():  # get information about wait a few second to revive
 
 def doAuraRepair(forced):
     # Check if repair needed
-    if forced or pyautogui.locateOnScreen(
+    if forced or locateOnScreenSilentFail(
         "./screenshots/repair.png",
         grayscale=True,
         confidence=0.4,
@@ -2550,7 +2550,7 @@ def doAuraRepair(forced):
 def doCityRepair():
     # for non-aura users: MUST have your character parked near a repairer in city before starting the script
     # Check if repair needed
-    if pyautogui.locateOnScreen(
+    if locateOnScreenSilentFail(
         "./screenshots/repair.png",
         grayscale=True,
         confidence=0.4,
@@ -2582,7 +2582,7 @@ def healthCheck():
     if r1 < 30 or r2 < 30 or r3 < 30:
         print("health pot pressed")
         # print(r1, r2, r3)
-        leaveButton = pyautogui.locateCenterOnScreen(
+        leaveButton = locateCenterOnScreenSilentFail(
             "./screenshots/leave.png",
             grayscale=True,
             confidence=0.7,
@@ -2597,13 +2597,13 @@ def healthCheck():
 
 
 def clearQuest():
-    quest = pyautogui.locateCenterOnScreen(
+    quest = locateCenterOnScreenSilentFail(
         "./screenshots/quest.png", confidence=0.9, region=(815, 600, 250, 200)
     )
-    leveledup = pyautogui.locateCenterOnScreen(
+    leveledup = locateCenterOnScreenSilentFail(
         "./screenshots/leveledup.png", confidence=0.9, region=(815, 600, 250, 200)
     )
-    gameMenu = pyautogui.locateCenterOnScreen(
+    gameMenu = locateCenterOnScreenSilentFail(
         "./screenshots/gameMenu.png",
         confidence=0.95,
         region=config["regions"]["center"],
@@ -2709,7 +2709,7 @@ def checkTimeout():
 def gameCrashCheck():
     # should put these in crash check instead? No because it requires one more click
     if config["GFN"] == True:
-        sessionLimitReached = pyautogui.locateCenterOnScreen(
+        sessionLimitReached = locateCenterOnScreenSilentFail(
             "./screenshots/sessionLimitReached.png",
             region=config["regions"]["center"],
             confidence=0.8,
@@ -2725,7 +2725,7 @@ def gameCrashCheck():
             print("session limit...")
             states["gameCrashCount"] = states["gameCrashCount"] + 1
             return True
-        inactiveGFN = pyautogui.locateCenterOnScreen(
+        inactiveGFN = locateCenterOnScreenSilentFail(
             "./screenshots/inactiveGFN.png",
             region=config["regions"]["center"],
             confidence=0.9,
@@ -2756,24 +2756,37 @@ def gameCrashCheck():
         return True
     return False
 
+def locateOnScreenSilentFail(*args, **kwargs):
+    print("entered locateOnScreenSilentFail")
+    try:
+        return pyautogui.locateOnScreen(*args, **kwargs)
+    except Exception as e:
+        print('locateOnScreenSilentFail: returned None with args', *args, **kwargs)
+
+def locateCenterOnScreenSilentFail(*args, **kwargs):
+    print("entered locateCenterOnScreenSilentFail")
+    try:
+        return pyautogui.locateOnScreen(*args, **kwargs)
+    except Exception as e:
+        print('locateCenterOnScreenSilentFail: returned None with args', *args, **kwargs)
 
 def offlineCheck():
-    dc = pyautogui.locateOnScreen(
+    dc = locateOnScreenSilentFail(
         "./screenshots/dc.png",
         region=config["regions"]["center"],
         confidence=config["confidenceForGFN"],
     )
-    ok = pyautogui.locateCenterOnScreen(
+    ok = locateCenterOnScreenSilentFail(
         "./screenshots/ok.png", region=config["regions"]["center"], confidence=0.75
     )
-    enterServer = pyautogui.locateCenterOnScreen(
+    enterServer = locateCenterOnScreenSilentFail(
         "./screenshots/enterServer.png",
         confidence=config["confidenceForGFN"],
         region=(885, 801, 160, 55),
     )
     # should put these in crash check instead? No because it requires one more click
     if config["GFN"] == True:
-        sessionLimitReached = pyautogui.locateCenterOnScreen(
+        sessionLimitReached = locateCenterOnScreenSilentFail(
             "./screenshots/sessionLimitReached.png",
             region=config["regions"]["center"],
             confidence=0.8,
@@ -2789,7 +2802,7 @@ def offlineCheck():
             print("session limit...")
             states["gameCrashCount"] = states["gameCrashCount"] + 1
             return True
-        updateMembership = pyautogui.locateCenterOnScreen(
+        updateMembership = locateCenterOnScreenSilentFail(
             "./screenshots/updateMembership.png",
             region=config["regions"]["center"],
             confidence=0.8,
@@ -2805,7 +2818,7 @@ def offlineCheck():
             print("update Membership...")
             states["gameCrashCount"] = states["gameCrashCount"] + 1
             return True
-        inactiveGFN = pyautogui.locateCenterOnScreen(
+        inactiveGFN = locateCenterOnScreenSilentFail(
             "./screenshots/inactiveGFN.png",
             region=config["regions"]["center"],
             confidence=0.9,
@@ -2837,7 +2850,7 @@ def offlineCheck():
 
 def closeGameByClickingDialogue():
     """
-    # ok = pyautogui.locateCenterOnScreen(
+    # ok = locateCenterOnScreenSilentFail(
     #     "./screenshots/ok.png",
     #     region=config["regions"]["center"],
     # )
@@ -2852,10 +2865,10 @@ def closeGameByClickingDialogue():
     #     pydirectinput.click(button="left")
     """
     while True:
-        ok = pyautogui.locateCenterOnScreen(
+        ok = locateCenterOnScreenSilentFail(
             "./screenshots/ok.png", region=config["regions"]["center"], confidence=0.75
         )
-        enterServer = pyautogui.locateCenterOnScreen(
+        enterServer = locateCenterOnScreenSilentFail(
             "./screenshots/enterServer.png",
             confidence=config["confidenceForGFN"],
             region=(885, 801, 160, 55),
@@ -2885,25 +2898,25 @@ def restartGame():
     while True:
         os.system('start steam://launch/1599340/dialog')
         sleep(60000, 60000)
-        enterGame = pyautogui.locateCenterOnScreen(
+        enterGame = locateCenterOnScreenSilentFail(
             "./screenshots/steamPlay.png", confidence=0.75
         )
         sleep(500, 600)
-        stopGame = pyautogui.locateCenterOnScreen(
+        stopGame = locateCenterOnScreenSilentFail(
             "./screenshots/steamStop.png", confidence=0.75
         )
         sleep(500, 600)
-        confirm = pyautogui.locateCenterOnScreen(
+        confirm = locateCenterOnScreenSilentFail(
             "./screenshots/steamConfirm.png", confidence=0.75
         )
         sleep(500, 600)
-        enterServer = pyautogui.locateCenterOnScreen(
+        enterServer = locateCenterOnScreenSilentFail(
             "./screenshots/enterServer.png",
             confidence=config["confidenceForGFN"],
             region=(885, 801, 160, 55),
         )
         sleep(500, 600)
-        inTown = pyautogui.locateCenterOnScreen(
+        inTown = locateCenterOnScreenSilentFail(
             "./screenshots/inTown.png",
             confidence=0.75,
             region=(1870, 133, 25, 30),
@@ -2915,7 +2928,7 @@ def restartGame():
             sleep(1200, 1300)
             pydirectinput.click(x=x, y=y, button="left")
             sleep(500, 600)
-            confirm = pyautogui.locateCenterOnScreen(
+            confirm = locateCenterOnScreenSilentFail(
                 "./screenshots/steamConfirm.png", confidence=0.75
             )
             if confirm == None:
@@ -2946,11 +2959,11 @@ def restartGame():
             return
         elif config["GFN"] == True:
             sleep(10000, 12000)
-            loaGFN = pyautogui.locateCenterOnScreen(
+            loaGFN = locateCenterOnScreenSilentFail(
                 "./screenshots/loaGFN.png",
                 confidence=0.8,
             )
-            loaGFNplay = pyautogui.locateCenterOnScreen(
+            loaGFNplay = locateCenterOnScreenSilentFail(
                 "./screenshots/loaGFNplay.png",
                 confidence=0.8,
             )
@@ -2970,12 +2983,12 @@ def restartGame():
                 print("clicked play restart on GFN")
                 sleep(40000, 42000)
                 break
-            afkGFN = pyautogui.locateCenterOnScreen(
+            afkGFN = locateCenterOnScreenSilentFail(
                 "./screenshots/afkGFN.png",
                 region=config["regions"]["center"],
                 confidence=0.75,
             )
-            closeGFN = pyautogui.locateCenterOnScreen(
+            closeGFN = locateCenterOnScreenSilentFail(
                 "./screenshots/closeGFN.png",
                 confidence=0.75,
             )
@@ -2988,7 +3001,7 @@ def restartGame():
                 sleep(1300, 1400)
                 continue
             # # i think eventually GFN would restart?
-            # loa = pyautogui.locateCenterOnScreen(
+            # loa = locateCenterOnScreenSilentFail(
             #     "./screenshots/loa.png",
             #     confidence=0.8,
             # )
@@ -3002,12 +3015,12 @@ def restartGame():
         sleep(1200, 1300)
     sleep(5200, 6300)
     while True:
-        enterServer = pyautogui.locateCenterOnScreen(
+        enterServer = locateCenterOnScreenSilentFail(
             "./screenshots/enterServer.png",
             confidence=config["confidenceForGFN"],
             region=(885, 801, 160, 55),
         )
-        enterGame = pyautogui.locateCenterOnScreen(
+        enterGame = locateCenterOnScreenSilentFail(
             "./screenshots/steamPlay.png", confidence=0.75
         )
         if enterServer != None:
@@ -3033,7 +3046,7 @@ def restartGame():
             continue
     sleep(3200, 4300)
     while True:
-        enterCharacter = pyautogui.locateCenterOnScreen(
+        enterCharacter = locateCenterOnScreenSilentFail(
             "./screenshots/enterCharacter.png",
             confidence=0.75,
             region=(745, 854, 400, 80),
@@ -3234,7 +3247,7 @@ def doGuildDonation():
     pydirectinput.keyUp("alt")
     sleep(4100, 5200)
 
-    ok = pyautogui.locateCenterOnScreen(
+    ok = locateCenterOnScreenSilentFail(
         "./screenshots/ok.png", region=config["regions"]["center"], confidence=0.75
     )
 
@@ -3269,7 +3282,7 @@ def doGuildDonation():
     pydirectinput.press("esc")
     sleep(3500, 3600)
 
-    supportResearch = pyautogui.locateCenterOnScreen(
+    supportResearch = locateCenterOnScreenSilentFail(
         "./screenshots/supportResearch.png",
         confidence=0.8,
         region=(1255, 210, 250, 600),
@@ -3287,7 +3300,7 @@ def doGuildDonation():
         pydirectinput.click(button="left")
         sleep(1500, 1600)
 
-        canSupportResearch = pyautogui.locateCenterOnScreen(
+        canSupportResearch = locateCenterOnScreenSilentFail(
             "./screenshots/canSupportResearch.png",
             confidence=0.8,
             region=(735, 376, 450, 350),
@@ -3493,7 +3506,7 @@ def bifrostGoTo(option):
     else:
         # ok
         while True:
-            okButton = pyautogui.locateCenterOnScreen(
+            okButton = locateCenterOnScreenSilentFail(
                 "./screenshots/ok.png",
                 confidence=0.75,
                 region=config["regions"]["center"],
@@ -3527,7 +3540,7 @@ def bifrostGoTo(option):
         if offlineCheck():
             return
         sleep(1000, 1200)
-        inTown = pyautogui.locateCenterOnScreen(
+        inTown = locateCenterOnScreenSilentFail(
             "./screenshots/inTown.png",
             confidence=0.75,
             region=(1870, 133, 25, 30),
@@ -3583,13 +3596,13 @@ def walkLopang():
 
 def checkBlueCrystal():
     """
-    # blueCrystal = pyautogui.locateCenterOnScreen(
+    # blueCrystal = locateCenterOnScreenSilentFail(
     #     "./screenshots/blueCrystal.png",
     #     confidence=0.75,
     #     region=config["regions"]["center"],
     # )
     """
-    silver1k = pyautogui.locateCenterOnScreen(
+    silver1k = locateCenterOnScreenSilentFail(
         "./screenshots/silver1k.png",
         confidence=0.75,
         region=config["regions"]["center"],
@@ -3638,7 +3651,7 @@ def acceptLopangDaily():
     sleep(2800, 2900)
 
     sleep(2900, 3200)
-    dailyCompleted = pyautogui.locateCenterOnScreen(
+    dailyCompleted = locateCenterOnScreenSilentFail(
         "./screenshots/dailyCompleted.png",
         confidence=0.75,
         region=(1143, 339, 110, 400),
@@ -3704,10 +3717,10 @@ def spamG(milliseconds):
 def buyAuctionFirstFav():
     while True:
         # buying first fav item for 2g or under
-        gold2 = pyautogui.locateCenterOnScreen(
+        gold2 = locateCenterOnScreenSilentFail(
             "./screenshots/gold2.png", region=(934, 415, 36, 20), confidence=0.9
         )
-        gold1 = pyautogui.locateCenterOnScreen(
+        gold1 = locateCenterOnScreenSilentFail(
             "./screenshots/gold1.png", region=(934, 415, 36, 20), confidence=0.9
         )
         if gold1 != None:
@@ -3809,7 +3822,7 @@ def goOnline():
 
 def waitForCityLoaded():
     while True:
-        inTown = pyautogui.locateCenterOnScreen(
+        inTown = locateCenterOnScreenSilentFail(
             "./screenshots/inTown.png",
             confidence=0.75,
             region=(1870, 133, 25, 30),
