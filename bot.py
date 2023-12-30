@@ -119,7 +119,7 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 105
+                    sleepDur = 100
                 else:
                     sleepDur = 72
                     
