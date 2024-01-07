@@ -9,6 +9,8 @@ import argparse
 from datetime import date
 import keyboard
 import os
+import platform
+import pywintypes, win32con, win32api
 
 pydirectinput.PAUSE = 0.05
 newStates = {
@@ -44,6 +46,7 @@ def abortScript():
     os._exit(1)
 
 def main():
+    set_resolution(1920, 1080)
     keyboard.add_hotkey('ctrl+page down', abortScript)
 
     print("Endless Chaos starting in seconds...")
@@ -113,13 +116,17 @@ def main():
             if not ranOnceFlag:
                 ranOnceFlag = True
 
+                # sleep lol
+                # sleepDur = 60 * 60 * 1000 # min * sec * ms
+                # sleep(sleepDur, sleepDur)
+
                 pydirectinput.keyDown('alt')
                 pydirectinput.press('`')
                 pydirectinput.keyUp('alt')
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 100
+                    sleepDur = 95
                 else:
                     sleepDur = 72
                     
@@ -3825,6 +3832,16 @@ def split(a, n):
     k, m = divmod(len(a), n)
     return (a[i * k + min(i, m) : (i + 1) * k + min(i + 1, m)] for i in range(n))
 
+def set_resolution(width: int, height: int):
+    if platform.system() == 'Windows':
+        # adapted from [Win | dP] Dragonback
+        # adapted from Peter Wood: https://stackoverflow.com/a/54262365
+        devmode = pywintypes.DEVMODEType()
+        devmode.PelsWidth = width
+        devmode.PelsHeight = height
+        devmode.Fields = win32con.DM_PELSWIDTH | win32con.DM_PELSHEIGHT
+        
+        win32api.ChangeDisplaySettings(devmode, 0)
 
 if __name__ == "__main__":
     states = newStates.copy()

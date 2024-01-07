@@ -5,3 +5,5 @@ pywin32
 Pillow
 opencv-python
 pydirectinput
+pywin32
+pip install lib-platform
