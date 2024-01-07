@@ -39,134 +39,7 @@ config = {
     # ilvl-endless is the dungeon which you want to run infinitely
     # ilvl-aor is the daily aura of resonance dungeon you only want to run TWICE per day
     # IMPORTANT: dungeon ilvl choices are only limited to 1475, 1445, 1370, 1110 for now. I will add more later when brel comes out
-    "characters": [
-        {
-            "index": 0,
-            "class": "slayer", # slayer
-            "ilvl-endless": 1610,
-            "ilvl-aor": 1610,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 1,
-            "class": "souleater", # souleater
-            "ilvl-endless": 1600,
-            "ilvl-aor": 1600,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 2,
-            "class": "paladin", # paladin
-            "ilvl-endless": 1610,
-            "ilvl-aor": 1610,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 3,
-            "class": "gunlancer", # gunlancer
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 4,
-            "class": "bard", # bard
-            "ilvl-endless": 1600,
-            "ilvl-aor": 1600,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 5,
-            "class": "gunslinger", # gunslinger
-            "ilvl-endless": 1600,
-            "ilvl-aor": 1600,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 6,
-            "class": "sorceress", # sorceress
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 7,
-            "class": "arcana", # arcana
-            "ilvl-endless": 1540,
-            "ilvl-aor": 1540,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 8,
-            "class": "summoner", # summoner
-            "ilvl-endless": 1540,
-            "ilvl-aor": 1540,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 9,
-            "class": "reaper", # reaper
-            "ilvl-endless": 1520,
-            "ilvl-aor": 1520,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        {
-            "index": 10,
-            "class": "sharpshooter", # sharpshooter
-            "ilvl-endless": 1580,
-            "ilvl-aor": 1580,
-            "lopang": False,
-            "guildDonation": False,
-            "rapport": False,
-        },
-        # {
-        #     "index": 1,
-        #     "class": "deathblade", # deathblade
-        #     "ilvl-endless": 1490,
-        #     "ilvl-aor": 1490,
-        #     "lopang": True,
-        #     "guildDonation": True,
-        #     "rapport": False,
-        # },
-        # {
-        #     "index": 7,
-        #     "class": "sorceress",
-        #     "ilvl-endless": 1445,
-        #     "ilvl-aor": 1445,
-        #     "lopang": True,
-        #     "guildDonation": True,
-        #     "rapport": False,
-        # },
-        # {
-        #     "index": 8,
-        #     "class": "sorceress",
-        #     "ilvl-endless": 1445,
-        #     "ilvl-aor": 1445,
-        #     "lopang": True,
-        #     "guildDonation": True,
-        #     "rapport": False,
-        # }
-    ],
+    "characters": characters,
     "performance": False,  # set True for lower-end PCs
     "interact": "g",  # change this if you have binded it to something else eg.mouse button
     "move": "left",  # or "right"
@@ -176,7 +49,7 @@ config = {
     "healthPot": "f1",  # important to put your regen potion on this button
     "friends": "u",
     "invisible": False,
-    "healthPotAtPercent": 0.13,  # health threshold to trigger potion
+    "healthPotAtPercent": 0.20,  # health threshold to trigger potion
     # "useAwakening": True, # not checking this for now
     # "useSpeciality1": True, # not checking this for now
     # "useSpeciality2": True, # not checking this for now
