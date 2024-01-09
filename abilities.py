@@ -168,10 +168,10 @@ abilities = {
             "abilityType": "normal",
             "hold": False,
             "holdTime": None,
-            "cast": False,
-            "castTime": None,
+            "cast": True,
+            "castTime": 1000,
             "position": {"left": 759, "top": 907, "width": 15, "height": 15},
-            "directional": False,
+            "directional": True,
         },
         {
             "key": "s",
@@ -713,7 +713,7 @@ abilities = {
             "cast": False,
             "castTime": None,
             "position": {"left": 855, "top": 869, "width": 15, "height": 15},
-            "directional": False,
+            "directional": True,
         },
         {
             "key": "a",
@@ -728,12 +728,12 @@ abilities = {
         {
             "key": "s",
             "abilityType": "normal",
-            "hold": True,
-            "holdTime": 1000,
+            "hold": False,
+            "holdTime": None,
             "cast": False,
             "castTime": None,
             "position": {"left": 797, "top": 907, "width": 15, "height": 15},
-            "directional": True,
+            "directional": False,
         },
         {
             "key": "d",
