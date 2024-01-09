@@ -44,7 +44,7 @@ config = {
     "interact": "g",  # change this if you have binded it to something else eg.mouse button
     "move": "left",  # or "right"
     "blink": "space",
-    "meleeAttack": "c",
+    "meleeAttack": ".",
     "awakening": "v",
     "healthPot": "f1",  # important to put your regen potion on this button
     "friends": "u",
