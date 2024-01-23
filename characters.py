@@ -11,8 +11,8 @@ characters = [
     {
         "index": 1,
         "class": "souleater", # souleater
-        "ilvl-endless": 1600,
-        "ilvl-aor": 1600,
+        "ilvl-endless": 1610,
+        "ilvl-aor": 1610,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
@@ -95,7 +95,7 @@ characters = [
         "ilvl-endless": 1490,
         "ilvl-aor": 1490,
         "lopang": False,
-        "guildDonation": True,
+        "guildDonation": False,
         "rapport": False,
     },
     {
