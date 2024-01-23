@@ -46,7 +46,7 @@ def abortScript():
     os._exit(1)
 
 def main():
-    set_resolution(1920, 1080)
+    # set_resolution(1920, 1080)
     keyboard.add_hotkey('ctrl+page down', abortScript)
 
     print("Endless Chaos starting in seconds...")
@@ -85,6 +85,7 @@ def main():
     pydirectinput.click(button=meleeClick)
     sleep(300, 400)
 
+    # suspend
     pydirectinput.keyDown('ctrl')
     sleep(10, 30)
     pydirectinput.keyDown('shift')
@@ -126,9 +127,9 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 95
+                    sleepDur = 78
                 else:
-                    sleepDur = 72
+                    sleepDur = 56
                     
                 sleepDur *= 60 * 1000
                 sleep(sleepDur, sleepDur)
@@ -185,7 +186,10 @@ def main():
                     break
                 if inChaos != None:
                     print("still in the last chaos run, quitting")
+                    # temp = states["multiCharacterModeState"][states["currentCharacter"]]
+                    # states["multiCharacterModeState"][states["currentCharacter"]] = 0
                     quitChaos()
+                    # states["multiCharacterModeState"][states["currentCharacter"]] = temp - 1
                     sleep(4000, 6000)
                 sleep(1400, 1600)
 
@@ -253,6 +257,8 @@ def main():
                         doLopang()
                         print("lopang done on : {}".format(states["currentCharacter"]))
                         sleep(1400, 1600)
+
+                    cleanInventory()
 
                     if gameCrashCheck():
                         states["status"] = "restart"
@@ -325,6 +331,8 @@ def main():
                         doLopang()
                         print("lopang done on : {}".format(states["currentCharacter"]))
                         sleep(1400, 1600)
+                    
+                    cleanInventory()
 
                     if gameCrashCheck():
                         states["status"] = "restart"
@@ -376,7 +384,7 @@ def main():
                 continue
 
         elif states["status"] == "floor1":
-            # print("floor1")
+            print("floor1")
             sleep(1000, 1300)
             # wait for loading
             waitForLoading()
@@ -392,7 +400,7 @@ def main():
                 quitChaos()
                 continue
             sleep(1000, 1200)
-            # print("floor1 loaded")
+            print("floor1 loaded")
 
             # saving clean abilities icons
 
@@ -416,7 +424,7 @@ def main():
             if checkTimeout():
                 quitChaos()
                 continue
-            # print("floor2 loaded")
+            print("floor2 loaded")
             # do floor two
             doFloor2()
         elif states["status"] == "floor3":
@@ -435,7 +443,7 @@ def main():
             if checkTimeout():
                 quitChaos()
                 continue
-            # print("floor3 loaded")
+            print("floor3 loaded")
             # currentTime = int(time.time_ns() / 1000000)
             # aorRun = pyautogui.screenshot()
             # aorRun.save("./debug/aor_" + str(currentTime) + ".png")
@@ -865,7 +873,7 @@ def doFloor2():
             quitChaos()
             return
 
-        # print("floor 2 cleared")
+        print("floor 2 cleared")
         # 不小心进下个门但没识别到
         if states["status"] == "floor3":
             # 要接着打
@@ -1008,7 +1016,7 @@ def doFloor3():
         quitChaos()
         return
 
-    # print("real floor 3 loaded")
+    print("real floor 3 loaded")
 
     clearQuest()
     sleep(500, 550)
@@ -1028,7 +1036,7 @@ def doFloor3():
         quitChaos()
         return
 
-    # print("Chaos Dungeon Full cleared")
+    print("Chaos Dungeon Full cleared")
     if config["floor3Mode"] == True:
         # restartChaos()
         quitChaos()  # to check aor, for multi-char mode
@@ -1110,6 +1118,8 @@ def quitChaos():
             pydirectinput.click(button="left")
             break
         sleep(300, 400)
+    # this line and following if block to the top of method if select level prob
+    # timeout is alright but d/c still weird
     printResult()
     if states["multiCharacterMode"]:
         states["multiCharacterModeState"][states["currentCharacter"]] = (
@@ -1120,6 +1130,16 @@ def quitChaos():
                 states["currentCharacter"], states["multiCharacterModeState"]
             )
         )
+
+        # if states["multiCharacterModeState"][states["currentCharacter"]] > 0:
+        #     click(60, 370, 2000) # select level
+        #     click(1400, 780, 2000) # enter
+        #     click(920, 600, 2000) # accept
+
+        #     states["status"] = "floor1"
+        #     states["instanceStartTime"] = int(time.time_ns() / 1000000)
+        #     return
+    
     states["status"] = "inCity"
     sleep(5000, 7000)
     return
@@ -3116,10 +3136,10 @@ def switchToCharacter(index):
     sleep(500, 600)
     pydirectinput.click(x=1260, y=392, button="left")
     sleep(500, 600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(500, 600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(500, 600)
+    # pydirectinput.click(x=1260, y=392, button="left")
+    # sleep(500, 600)
+    # pydirectinput.click(x=1260, y=392, button="left")
+    # sleep(500, 600)
     if index > 8:
         # mouseMoveTo(
         #     x=config["charPositions"][index][0], y=config["charPositions"][index][1]
@@ -3134,10 +3154,10 @@ def switchToCharacter(index):
         sleep(500, 600)
         pydirectinput.click(x=1260, y=638, button="left")
         sleep(500, 600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(500, 600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(500, 600)
+        # pydirectinput.click(x=1260, y=638, button="left")
+        # sleep(500, 600)
+        # pydirectinput.click(x=1260, y=638, button="left")
+        # sleep(500, 600)
 
     mouseMoveTo(
         x=config["charPositions"][index][0], y=config["charPositions"][index][1]
@@ -3827,6 +3847,75 @@ def waitForCityLoaded():
             break
         sleep(5000, 6000)
 
+def cardEater():
+    #consume cards
+    for card in ["white", "green", "blue", "purple"]:
+        while True:
+            location = pyautogui.locateCenterOnScreen(
+                "./screenshots/"+card+"Card.png",
+                confidence=0.75)
+            if location == None:
+                break
+            else:
+                x, y = location
+                mouseMoveTo(x=x, y=y)
+                sleep(200, 400)
+                pydirectinput.click(x=x, y=y, button="right")
+                pydirectinput.click(x=x, y=y, button="right")
+                sleep(700, 1100)
+
+def cleanInventory():
+    sleep(1000,1500)
+    pydirectinput.press("i")
+    sleep(1000,2000)
+    #consume cards
+    cardEater()
+    
+    #dismantle
+    x,y = (1557, 740)
+    mouseMoveTo(x=x, y=y)
+    sleep(300,400)
+    pydirectinput.click(x, y, button = "left")
+    sleep(500,900)
+    pydirectinput.click(x=1210, y=730, button = "left")
+    sleep(500, 800)
+    pydirectinput.click(x=1410, y=730, button = "left")
+    sleep(500, 800)
+    pydirectinput.click(x=1225, y=570, button = "left")
+    sleep(500, 800)
+    
+    #deposit
+    pydirectinput.keyDown("alt")
+    sleep(500, 500)
+    pydirectinput.press("p")
+    sleep(500, 500)
+    pydirectinput.keyUp("alt")
+    sleep(500, 500)
+    # mouseMoveTo(x=1143, y=630)
+    # sleep(2500, 2600)
+    pydirectinput.click(1143, 630, button="left") # pet
+    sleep(3000, 3000)
+    # mouseMoveTo(x=560, y=763)
+    # sleep(2500, 2600)
+    pydirectinput.click(560, 765, button="left") # roster deposit
+    sleep(2500, 2600)
+    pydirectinput.click(880, 765, button="left") # character deposit
+    sleep(2500, 2600)
+    
+    #compact
+    # mouseMoveTo(x=1108, y=339)
+    # sleep(2500, 2600)
+    # pydirectinput.click(1108, 339, button="left")
+    # sleep(2500, 2600)
+    
+    #exit
+    for _ in range(3):
+        pydirectinput.press("esc")
+        sleep(100, 200)
+
+def click(x, y, sleepDur):
+    pydirectinput.click(x, y, button="left")
+    sleep(sleepDur, sleepDur)
 
 def split(a, n):
     k, m = divmod(len(a), n)
