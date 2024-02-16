@@ -3898,9 +3898,9 @@ def cleanInventory():
     # mouseMoveTo(x=560, y=763)
     # sleep(2500, 2600)
     pydirectinput.click(560, 765, button="left") # roster deposit
-    sleep(2500, 2600)
+    sleep(1500, 1600)
     pydirectinput.click(880, 765, button="left") # character deposit
-    sleep(2500, 2600)
+    sleep(1500, 1600)
     
     #compact
     # mouseMoveTo(x=1108, y=339)
