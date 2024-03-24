@@ -109,6 +109,7 @@ def main():
     states["botStartTime"] = int(time.time_ns() / 1000000)
 
     ranOnceFlag = False
+    # ranOnceFlag = True
 
     while True:
         if states["status"] == "inCity":
@@ -140,7 +141,7 @@ def main():
                 sleep(3000, 3000)
                 pydirectinput.click(x=1900, y=950, button="left") # game menu
                 sleep(3000, 3000)
-                pydirectinput.click(x=1100, y=730, button="left") # settings
+                pydirectinput.click(x=1025, y=730, button="left") # settings
                 sleep(3000, 3000)
                 pydirectinput.click(x=700, y=225, button="left") # favorite settings
                 sleep(2000, 2000)
@@ -1474,6 +1475,7 @@ def useAbilities():
             if (
                 config["characters"][states["currentCharacter"]]["class"] == "arcana"
                 or config["characters"][states["currentCharacter"]]["class"] == "deathblade"
+                or config["characters"][states["currentCharacter"]]["class"] == "breaker"
             ):
                 pydirectinput.press("x")
                 pydirectinput.press("z")
@@ -1689,7 +1691,7 @@ def checkCDandCast(ability):
                 pydirectinput.press(ability["key"])
                 sleep(50, 60)
                 now_ms = int(time.time_ns() / 1000000)
-                if now_ms - start_ms > 15000:
+                if now_ms - start_ms > 2000:
                     print("unable to use spell for 15s, check if disconnected")
                     return
 
