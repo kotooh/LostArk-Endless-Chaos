@@ -110,8 +110,8 @@ characters = [
     {
         "index": 12,
         "class": "breaker", # breaker
-        "ilvl-endless": 1580,
-        "ilvl-aor": 1580,
+        "ilvl-endless": 1600,
+        "ilvl-aor": 1600,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
