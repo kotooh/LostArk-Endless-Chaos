@@ -57,6 +57,7 @@ def main():
     parser.add_argument("--lunshua", action="store_true", help="A boolean switch")
     parser.add_argument("--bulunshua", action="store_true", help="A boolean switch")
     parser.add_argument("--buy", action="store_true", help="A boolean switch")
+    parser.add_argument("--nounas", action="store_true", help="A boolean switch")
     args = parser.parse_args()
 
     if args.lunshua:
@@ -108,8 +109,10 @@ def main():
     # save bot start time
     states["botStartTime"] = int(time.time_ns() / 1000000)
 
-    ranOnceFlag = False
+    
+    # ranOnceFlag = False
     # ranOnceFlag = True
+    ranOnceFlag = args.nounas
 
     while True:
         if states["status"] == "inCity":
@@ -3130,8 +3133,8 @@ def switchToCharacter(index):
     # sleep(1500, 1600)
     # pyautogui.scroll(5)  # fix character switch if you have more then 9 characters
     # sleep(1500, 1600)
-    mouseMoveTo(x=1260, y=392)
-    sleep(500, 600)
+    # mouseMoveTo(x=1260, y=392)
+    # sleep(500, 600)
     pydirectinput.click(x=1260, y=392, button="left")
     sleep(500, 600)
     pydirectinput.click(x=1260, y=392, button="left")
@@ -3148,8 +3151,8 @@ def switchToCharacter(index):
         # )
         # pyautogui.scroll(-5)
         # sleep(1500, 1600)
-        mouseMoveTo(x=1260, y=638)
-        sleep(500, 600)
+        # mouseMoveTo(x=1260, y=638)
+        # sleep(500, 600)
         pydirectinput.click(x=1260, y=638, button="left")
         sleep(500, 600)
         pydirectinput.click(x=1260, y=638, button="left")
@@ -3871,7 +3874,7 @@ def cleanInventory():
     pydirectinput.press("i")
     sleep(1000,2000)
     #consume cards
-    cardEater()
+    # cardEater()
     
     #dismantle
     x,y = (1557, 740)
