@@ -109,7 +109,6 @@ def main():
     # save bot start time
     states["botStartTime"] = int(time.time_ns() / 1000000)
 
-    
     # ranOnceFlag = False
     # ranOnceFlag = True
     ranOnceFlag = args.nounas
@@ -131,9 +130,9 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 78
+                    sleepDur = 60
                 else:
-                    sleepDur = 56
+                    sleepDur = 38
                     
                 sleepDur *= 60 * 1000
                 sleep(sleepDur, sleepDur)
@@ -623,6 +622,7 @@ def enterChaos():
                 1600: [[1200, 307], [524, 455]],
                 # voldis
                 1610: [[1350, 307], [524, 400]],
+                1630: [[1350, 307], [524, 455]],
             }
             if states["multiCharacterMode"] or aor != None:
                 mouseMoveTo(
@@ -3135,16 +3135,11 @@ def switchToCharacter(index):
     # sleep(1500, 1600)
     # mouseMoveTo(x=1260, y=392)
     # sleep(500, 600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(500, 600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(500, 600)
-    pydirectinput.click(x=1260, y=392, button="left")
-    sleep(500, 600)
-    # pydirectinput.click(x=1260, y=392, button="left")
-    # sleep(500, 600)
-    # pydirectinput.click(x=1260, y=392, button="left")
-    # sleep(500, 600)
+
+    for _ in range(3):
+        pydirectinput.click(x=1260, y=392, button="left")
+        sleep(500, 600)
+
     if index > 8:
         # mouseMoveTo(
         #     x=config["charPositions"][index][0], y=config["charPositions"][index][1]
@@ -3153,16 +3148,10 @@ def switchToCharacter(index):
         # sleep(1500, 1600)
         # mouseMoveTo(x=1260, y=638)
         # sleep(500, 600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(500, 600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(500, 600)
-        pydirectinput.click(x=1260, y=638, button="left")
-        sleep(500, 600)
-        # pydirectinput.click(x=1260, y=638, button="left")
-        # sleep(500, 600)
-        # pydirectinput.click(x=1260, y=638, button="left")
-        # sleep(500, 600)
+
+        for _ in range(3):
+            pydirectinput.click(x=1260, y=638, button="left")
+            sleep(500, 600)
 
     mouseMoveTo(
         x=config["charPositions"][index][0], y=config["charPositions"][index][1]

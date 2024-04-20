@@ -11,8 +11,8 @@ characters = [
     {
         "index": 1,
         "class": "souleater", # souleater
-        "ilvl-endless": 1610,
-        "ilvl-aor": 1610,
+        "ilvl-endless": 1630,
+        "ilvl-aor": 1630,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
@@ -112,6 +112,33 @@ characters = [
         "class": "breaker", # breaker
         "ilvl-endless": 1600,
         "ilvl-aor": 1600,
+        "lopang": False,
+        "guildDonation": False,
+        "rapport": False,
+    },
+    {
+        "index": 13,
+        "class": "sorceress", # sorceress
+        "ilvl-endless": 1490,
+        "ilvl-aor": 1490,
+        "lopang": False,
+        "guildDonation": False,
+        "rapport": False,
+    },
+    {
+        "index": 14,
+        "class": "sorceress", # sorceress
+        "ilvl-endless": 1490,
+        "ilvl-aor": 1490,
+        "lopang": False,
+        "guildDonation": False,
+        "rapport": False,
+    },
+    {
+        "index": 15,
+        "class": "sorceress", # sorceress
+        "ilvl-endless": 1490,
+        "ilvl-aor": 1490,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
