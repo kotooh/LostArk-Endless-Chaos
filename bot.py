@@ -149,7 +149,7 @@ def main():
                 sleep(2000, 2000)
                 pydirectinput.click(x=1210, y=377, button="left") # 21:9
                 sleep(2000, 2000)
-                pydirectinput.click(x=1345, y=545, button="left") # hud size
+                pydirectinput.click(x=1345, y=620, button="left") # hud size
                 sleep(2000, 2000)
                 pydirectinput.click(x=1220, y=815, button="left") # OK
                 sleep(2000, 2000)
