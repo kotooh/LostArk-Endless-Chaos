@@ -2,8 +2,8 @@ characters = [
     {
         "index": 0,
         "class": "slayer", # slayer
-        "ilvl-endless": 1610,
-        "ilvl-aor": 1610,
+        "ilvl-endless": 1630,
+        "ilvl-aor": 1630,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
