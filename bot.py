@@ -11,6 +11,7 @@ import keyboard
 import os
 import platform
 import pywintypes, win32con, win32api
+from multipledispatch import dispatch
 
 pydirectinput.PAUSE = 0.05
 newStates = {
@@ -47,7 +48,6 @@ def abortScript():
 
 def main():
     # set_resolution(1920, 1080)
-    keyboard.add_hotkey('ctrl+page down', abortScript)
 
     print("Endless Chaos starting in seconds...")
     print("Remember to turn on Auto-disassemble")
@@ -2663,12 +2663,17 @@ def clearQuest():
         pydirectinput.press("esc")
         sleep(1800, 1900)
 
-
+@dispatch(int, int)
 def sleep(min, max):
     sleepTime = random.randint(min, max) / 1000.0
     if sleepTime < 0:
         return
     time.sleep(sleepTime)
+
+@dispatch(int)
+def sleep(duration):
+    duration /= 1000
+    time.sleep(duration)
 
 
 def spiralSearch(rows, cols, rStart, cStart):
@@ -3862,50 +3867,69 @@ def cleanInventory():
     sleep(1000,1500)
     pydirectinput.press("i")
     sleep(1000,2000)
-    #consume cards
     # cardEater()
     
-    #dismantle
-    x,y = (1557, 740)
-    mouseMoveTo(x=x, y=y)
-    sleep(300,400)
-    pydirectinput.click(x, y, button = "left")
-    sleep(500,900)
-    pydirectinput.click(x=1210, y=730, button = "left")
-    sleep(500, 800)
-    pydirectinput.click(x=1410, y=730, button = "left")
-    sleep(500, 800)
-    pydirectinput.click(x=1225, y=570, button = "left")
-    sleep(500, 800)
+    # redismantle
+    click(1557, 740, "left", 900)
+    click(1210, 730, "left", 800)
+    click(1410, 730, "left", 800)
+    click(1225, 570, "left", 800)
     
-    #deposit
+    # deposit
     pydirectinput.keyDown("alt")
-    sleep(500, 500)
+    sleep(500)
     pydirectinput.press("p")
-    sleep(500, 500)
+    sleep(500)
     pydirectinput.keyUp("alt")
-    sleep(500, 500)
-    # mouseMoveTo(x=1143, y=630)
-    # sleep(2500, 2600)
-    pydirectinput.click(1143, 630, button="left") # pet
-    sleep(3000, 3000)
-    # mouseMoveTo(x=560, y=763)
-    # sleep(2500, 2600)
-    pydirectinput.click(560, 765, button="left") # roster deposit
-    sleep(1500, 1600)
-    pydirectinput.click(880, 765, button="left") # character deposit
-    sleep(1500, 1600)
+    sleep(500)
+    click(1143, 630, "left", 3000) # remote storage
+    click(880, 765, "left", 1000) # character move all dupes
+
+    # fuse gems
+    transferGems("storage") # from storage
+    pydirectinput.press("esc")
+    sleep(2000)
+    click(1600, 740, "left", 1000) # gems
+    click(1350, 680, "left", 500) # lvl 8
+    click(1350, 740, "left", 500) # fuse
+    click(920, 575, "left", 1300) # yes
+    click(1600, 740, "left", 1000) # gems
+    click(1143, 630, "left", 500) # remote storage
+
+    click(660, 345, "left", 1000) # inventory roster deposit
     
-    #compact
+    # compact
     # mouseMoveTo(x=1108, y=339)
     # sleep(2500, 2600)
     # pydirectinput.click(1108, 339, button="left")
     # sleep(2500, 2600)
     
-    #exit
+    # exit
     for _ in range(3):
         pydirectinput.press("esc")
         sleep(100, 200)
+
+def transferGems(src: str):
+    match src:
+        case "inventory":
+            r = (1080, 300, (1500-1080), (780-300))
+        case "storage":
+            r = (425, 300, (675-425), (780-300))
+        case _:
+            raise
+
+    for lvl in range(1, 8):
+        for gemType in ["dmg", "cd"]:
+            while True:
+                location = pyautogui.locateCenterOnScreen(
+                    "./screenshots/gems/" + str(lvl) + gemType + ".png",
+                    confidence=0.75, region=r)
+                if location == None:
+                    break
+                else:
+                    x, y = location
+                    pydirectinput.click(x=x, y=y, button="right")
+                    sleep(200, 500)
 
 def click(x, y, sleepDur):
     pydirectinput.click(x, y, button="left")
@@ -3926,6 +3950,13 @@ def set_resolution(width: int, height: int):
         
         win32api.ChangeDisplaySettings(devmode, 0)
 
+def click(x: int, y: int, b: str = "left", sleepDur: int = 0):
+    pydirectinput.click(x, y, button=b)
+    sleepDur /= 1000
+    time.sleep(sleepDur)
+
 if __name__ == "__main__":
+    keyboard.add_hotkey('ctrl+page down', abortScript)
+    
     states = newStates.copy()
     main()
