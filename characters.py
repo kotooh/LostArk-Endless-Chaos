@@ -20,8 +20,8 @@ characters = [
     {
         "index": 2,
         "class": "paladin", # paladin
-        "ilvl-endless": 1610,
-        "ilvl-aor": 1610,
+        "ilvl-endless": 1630,
+        "ilvl-aor": 1630,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
@@ -92,8 +92,8 @@ characters = [
     {
         "index": 10,
         "class": "deathblade", # deathblade
-        "ilvl-endless": 1490,
-        "ilvl-aor": 1490,
+        "ilvl-endless": 1580,
+        "ilvl-aor": 1580,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,

@@ -2921,7 +2921,7 @@ def restartGame():
     # states["currentCharacter"] = config["mainCharacter"]
     while True:
         os.system('start steam://launch/1599340/dialog')
-        sleep(60000, 60000)
+        sleep(30000, 30000)
         enterGame = pyautogui.locateCenterOnScreen(
             "./screenshots/steamPlay.png", confidence=0.75
         )
