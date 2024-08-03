@@ -28,9 +28,9 @@ characters = [
     },
     {
         "index": 3,
-        "class": "gunlancer", # gunlancer
-        "ilvl-endless": 1580,
-        "ilvl-aor": 1580,
+        "class": "deathblade", # deathblade
+        "ilvl-endless": 1630,
+        "ilvl-aor": 1630,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
@@ -38,8 +38,8 @@ characters = [
     {
         "index": 4,
         "class": "bard", # bard
-        "ilvl-endless": 1610,
-        "ilvl-aor": 1610,
+        "ilvl-endless": 1630,
+        "ilvl-aor": 1630,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
@@ -83,15 +83,15 @@ characters = [
     {
         "index": 9,
         "class": "reaper", # reaper
-        "ilvl-endless": 1520,
-        "ilvl-aor": 1520,
+        "ilvl-endless": 1540,
+        "ilvl-aor": 1540,
         "lopang": False,
         "guildDonation": False,
         "rapport": False,
     },
     {
         "index": 10,
-        "class": "deathblade", # deathblade
+        "class": "gunlancer", # gunlancer
         "ilvl-endless": 1580,
         "ilvl-aor": 1580,
         "lopang": False,

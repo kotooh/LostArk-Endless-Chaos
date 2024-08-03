@@ -130,9 +130,9 @@ def main():
 
                 # wed: 2
                 if date.today().weekday() == 2:
-                    sleepDur = 47
+                    sleepDur = 55
                 else:
-                    sleepDur = 32
+                    sleepDur = 35
                     
                 sleepDur *= 60 * 1000
                 sleep(sleepDur, sleepDur)
